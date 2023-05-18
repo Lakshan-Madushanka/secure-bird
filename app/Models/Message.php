@@ -22,6 +22,14 @@ class Message extends Model
         'expires_at',
     ];
 
+    protected $casts = [
+      'expires_at' => 'datetime',
+    ];
+
+     protected $hidden = [
+       'password',
+     ];
+
     // Relationships
 
     /** @return HasMany<Visit> */
