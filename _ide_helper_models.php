@@ -17,10 +17,11 @@ namespace App\Models{
  * @property string $id
  * @property string $messages_id
  * @property string $name
+ * @property string $original_name
  * @property string $path
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Message|null $message
+ * @property-read \App\Models\Message $message
  * @method static \Illuminate\Database\Eloquent\Builder|Media newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Media newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Media query()
@@ -28,6 +29,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Media whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Media whereMessagesId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Media whereName($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Media whereOriginalName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Media wherePath($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Media whereUpdatedAt($value)
  */
@@ -46,8 +48,8 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $expires_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Media> $medias
- * @property-read int|null $medias_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Media> $media
+ * @property-read int|null $media_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Visit> $visits
  * @property-read int|null $visits_count
  * @method static \Database\Factories\MessageFactory factory($count = null, $state = [])
