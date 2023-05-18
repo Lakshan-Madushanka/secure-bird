@@ -18,7 +18,7 @@ return new class () extends Migration {
 
             $table->string('name');
             $table->string('original_name');
-            $table->string('path');
+            $table->string('full_path');
 
             $table->timestamps();
         });
