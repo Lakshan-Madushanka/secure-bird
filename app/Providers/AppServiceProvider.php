@@ -10,6 +10,7 @@ use Illuminate\Database\Events\QueryExecuted;
 use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\ServiceProvider;
+use Illuminate\Validation\Rules\Password;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -27,9 +28,15 @@ class AppServiceProvider extends ServiceProvider
     public function boot(): void
     {
         Model::shouldBeStrict((bool) $this->app->environment(['local', 'testing']));
+
+        $this->bootLocally();
+
+        $this->setupPasswordRules();
+
+
     }
 
-    public function registerLocally(): void
+    public function bootLocally(): void
     {
         if ( ! $this->app->isProduction()) {
             $this->reportTimeConsumingQueries();
@@ -53,6 +60,21 @@ class AppServiceProvider extends ServiceProvider
                     new Exception(message: "Individual database query exceeded {$maxTimeLimit}ms.")
                 );
             }
+        });
+    }
+
+    public function setupPasswordRules(): void
+    {
+        Password::defaults(function () {
+            $rule = Password::min(8);
+
+            return $this->app->isProduction()
+                ? $rule
+                    ->mixedCase()
+                    ->numbers()
+                    ->symbols()
+                    ->uncompromised()
+                : $rule;
         });
     }
 }
