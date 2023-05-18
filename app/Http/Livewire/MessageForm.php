@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Http\Livewire;
 
+use App\Actions\StoreMessageAction;
+use App\Data\MessageData;
 use App\Rules\UploadedMediaSizeRule;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -83,7 +85,8 @@ class MessageForm extends Component
     {
         $this->validate();
 
-        dump($this->all());
+        app(StoreMessageAction::class)
+            ->execute(MessageData::from($this->all()));
     }
 
     public function render(): View|\Illuminate\Foundation\Application|Factory|Application
