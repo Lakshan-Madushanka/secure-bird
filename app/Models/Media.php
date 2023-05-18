@@ -16,8 +16,8 @@ class Media extends Model
 
     protected $fillable = [
         'name',
+        'original_name',
         'path',
-        'created_at',
     ];
 
     // Relationships

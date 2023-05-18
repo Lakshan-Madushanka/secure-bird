@@ -17,6 +17,7 @@ return new class () extends Migration {
             $table->foreignUuid('messages_id')->constrained()->cascadeOnDelete();
 
             $table->string('name');
+            $table->string('original_name');
             $table->string('path');
 
             $table->timestamps();
