@@ -24,6 +24,6 @@ class Visit extends Model
     /** @return BelongsTo<Message, Visit> */
     public function message(): BelongsTo
     {
-        return $this->belongsTo(Message::class, 'message_id', 'id');
+        return $this->belongsTo(Message::class, 'messages_id', 'id');
     }
 }

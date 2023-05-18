@@ -49,17 +49,27 @@ class Message extends Model
         );
     }
 
+    /**
+     * @return Attribute<string, never>
+     */
+    public function storagePath(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => "message/media/{$this->id}/"
+        );
+    }
+
     // Relationships
 
     /** @return HasMany<Visit> */
     public function visits(): HasMany
     {
-        return $this->hasMany(Visit::class, 'message_id', 'id');
+        return $this->hasMany(Visit::class, 'messages_id', 'id');
     }
 
     /** @return HasMany<Media> */
-    public function medias(): HasMany
+    public function media(): HasMany
     {
-        return $this->hasMany(Media::class, 'message_id', 'id');
+        return $this->hasMany(Media::class, 'messages_id', 'id');
     }
 }
