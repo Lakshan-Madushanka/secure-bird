@@ -50,7 +50,7 @@
         />
         <div x-cloak x-show="isUploading">
             <progress max="100" x-bind:value="progress" class="w-full"></progress>
-            <p class="text-center" x-model="getProgress()"></p>
+            <p class="text-center" x-text="getProgress()"></p>
         </div>
     </div>
 </div>
