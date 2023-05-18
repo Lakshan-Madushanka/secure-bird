@@ -13,10 +13,14 @@
         <x-inputs.input-error field="text" class="lg:w-2/3"/>
 
 
-        <x-inputs.file-upload wire:model="media" label="Upload your files max (25mb)" wrapperClass="w-full lg:w-2/3"/>
+        <x-inputs.file-upload
+            wire:key="2"
+            wire:model="media" label="Upload your files max (25mb)"
+            wrapperClass="w-full lg:w-2/3"
+        />
         <x-inputs.input-error field="media" class="lg:w-2/3"/>
 
-        <div class="w-full w-2/3 flex justify-end">
+        <div class="w-full lg:w-2/3 flex justify-end">
             <x-button wire:click="next" target="next">
                 Next
             </x-button>

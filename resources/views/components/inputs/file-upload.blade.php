@@ -1,5 +1,4 @@
 <div
-     wire:key="2098"
      x-data="{
        totalSize: 0,
        isUploading: false,
