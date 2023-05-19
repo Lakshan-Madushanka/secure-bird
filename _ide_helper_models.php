@@ -14,11 +14,12 @@ namespace App\Models{
 /**
  * App\Models\Media
  *
+ * @method MediaData getData()
  * @property string $id
  * @property string $messages_id
  * @property string $name
  * @property string $original_name
- * @property string $path
+ * @property string $full_path
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Message $message
@@ -26,11 +27,11 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Media newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Media query()
  * @method static \Illuminate\Database\Eloquent\Builder|Media whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Media whereFullPath($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Media whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Media whereMessagesId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Media whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Media whereOriginalName($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Media wherePath($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Media whereUpdatedAt($value)
  */
 	class Media extends \Eloquent {}
@@ -40,10 +41,12 @@ namespace App\Models{
 /**
  * App\Models\Message
  *
+ * @property string $storagePath
+ * @method MessageData getData()
  * @property string $id
  * @property string|null $text
  * @property string $password
- * @property int|null $no_of_allowed_visits
+ * @property int $no_of_allowed_visits
  * @property int $encryption_progress
  * @property \Illuminate\Support\Carbon|null $expires_at
  * @property \Illuminate\Support\Carbon|null $created_at
