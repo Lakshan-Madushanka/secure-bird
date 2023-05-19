@@ -30,3 +30,21 @@ it('it convert expires at to utc time when storing', function (): void {
 
     expect($dto->expires_at->diffInSeconds($userUtcTime))->toBe(0);
 });
+
+it('it set no_of_allowed_visits to -1 is empty string is passed', function (): void {
+    /**
+     * @var $data MessageFactory
+     */
+    $factory = Message::factory();
+    $timeZone = 'Asia/Colombo';
+
+    $data = $factory
+        ->withTimeZone($timeZone)
+        ->make(['no_of_allowed_visits' => ''])
+        ->makeVisible('password')
+        ->toArray();
+
+    $dto = MessageData::from($data);
+
+    expect($dto->no_of_allowed_visits)->toBe(-1);
+});

@@ -13,6 +13,10 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Spatie\LaravelData\WithData;
 
+/**
+ * @property string $storagePath
+ * @method MessageData getData()
+ */
 class Message extends Model
 {
     use HasFactory;
@@ -55,7 +59,7 @@ class Message extends Model
     public function storagePath(): Attribute
     {
         return Attribute::make(
-            get: fn () => "message/media/{$this->id}/"
+            get: fn () => "message/media/{$this->id}"
         );
     }
 

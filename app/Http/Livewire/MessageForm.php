@@ -86,7 +86,7 @@ class MessageForm extends Component
         $this->validate();
 
         app(StoreMessageAction::class)
-            ->execute(MessageData::from($this->all()));
+            ->execute(MessageData::from($this->all()), $this->media);
     }
 
     public function render(): View|\Illuminate\Foundation\Application|Factory|Application

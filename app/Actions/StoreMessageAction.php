@@ -6,11 +6,23 @@ namespace App\Actions;
 
 use App\Data\MessageData;
 use App\Models\Message;
+use Illuminate\Http\UploadedFile;
 
 class StoreMessageAction
 {
-    public function execute(MessageData $data): Message
+    /**
+     * @param  MessageData  $data
+     * @param  array<UploadedFile>  $media
+     * @return Message
+     */
+    public function execute(MessageData $data, array $media = []): Message
     {
-        return Message::create($data->all());
+        $message =  Message::create($data->except('text', 'id', 'created_at', 'storagePath')->toArray());
+
+        $storeMediaAction = app(UploadMediaAction::class);
+
+        $storeMediaAction->execute($media, $message);
+
+        return  $message->load('media');
     }
 }
