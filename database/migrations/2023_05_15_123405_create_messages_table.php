@@ -17,7 +17,7 @@ return new class () extends Migration {
 
             $table->text('text')->nullable();
             $table->string('password');
-            $table->integer('no_of_allowed_visits')->nullable();
+            $table->integer('no_of_allowed_visits')->default(-1);
             $table->tinyInteger('encryption_progress')->default(0);
             $table->dateTime('expires_at')->nullable();
 
