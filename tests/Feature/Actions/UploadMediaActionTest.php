@@ -9,9 +9,11 @@ use Illuminate\Support\Facades\Storage;
 
 use Illuminate\Http\UploadedFile;
 
-it('it can store media for a message', function (): void {
+beforeEach(function (): void {
     Storage::fake();
+});
 
+it('it can store media for a message', function (): void {
     $fileName = 'test';
     $file = UploadedFile::fake()->create($fileName);
     $media = [$file];
@@ -20,15 +22,12 @@ it('it can store media for a message', function (): void {
 
     app(UploadMediaAction::class)->execute($media, $message);
 
-    $destination = $message->storagePath.'/'.$file->hashName();
+    $destination = $message->mediaStoragePath.'/'.$file->hashName();
 
     Storage::disk()->assertExists($destination);
 });
 
 it('it can create a media record in db for a message', function (): void {
-
-    Storage::fake();
-
     $fileName = 'test';
     $file = UploadedFile::fake()->create($fileName);
     $media = [$file];
@@ -37,15 +36,14 @@ it('it can create a media record in db for a message', function (): void {
 
     app(UploadMediaAction::class)->execute($media, $message);
 
-    $destination = $message->storagePath.'/'.$file->hashName();
+    $destination = $message->mediaStoragePath.'/'.$file->hashName();
 
     Storage::disk()->assertExists($destination);
 
     /** @var \App\Data\MediaData $mediaRecord */
     $mediaRecord = $message->media()->first()?->getData();
 
-    expect($mediaRecord->name)->toBe($file->hashName());
-    expect($mediaRecord->original_name)->toBe($fileName);
-    expect($mediaRecord->full_path)->toBe($destination);
-
+    expect($mediaRecord->name)->toBe($file->hashName())
+        ->and($mediaRecord->original_name)->toBe($fileName)
+        ->and($mediaRecord->full_path)->toBe($destination);
 });

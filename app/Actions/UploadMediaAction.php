@@ -23,7 +23,7 @@ class UploadMediaAction
 
         collect($media)->each(function (UploadedFile $file) use ($message): void {
             $fileName = File::sanitizeName($file->getClientOriginalName());
-            $uploadedFile = $file->store($message->storagePath);
+            $uploadedFile = $file->store($message->mediaStoragePath);
 
             $message->media()->create([
                 'name' => $file->hashName(),

@@ -25,11 +25,21 @@ class MessageFactory extends Factory
     public function definition(): array
     {
         return [
-            'text' => $this->faker->paragraphs(random_int(3, 5), true),
             'password' => Hash::make('password'),
             'no_of_allowed_visits' => mt_rand(5, 10),
             'expires_at' => now()->addMinutes(5),
         ];
+    }
+
+    public function withMessage()
+    {
+        return $this->state(
+            function (array $attributes) {
+                return [
+                    'text' => $this->faker->paragraph(random_int(3, 5), true)
+                ];
+            }
+        );
     }
 
     public function withTimeZone(string $timeZone): static

@@ -15,6 +15,8 @@ use Spatie\LaravelData\WithData;
 
 /**
  * @property string $storagePath
+ * @property string $textStoragePath
+ * @property string $mediaStoragePath
  * @method MessageData getData()
  */
 class Message extends Model
@@ -35,6 +37,7 @@ class Message extends Model
 
     protected $casts = [
         'expires_at' => 'datetime',
+        'encryption_success' => 'bool'
     ];
 
     protected $hidden = [
@@ -59,7 +62,27 @@ class Message extends Model
     public function storagePath(): Attribute
     {
         return Attribute::make(
-            get: fn () => "message/media/{$this->id}"
+            get: fn () => "message/{$this->id}/"
+        );
+    }
+
+    /**
+     * @return Attribute<string, never>
+     */
+    public function textStoragePath(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => "{$this->storagePath}text"
+        );
+    }
+
+    /**
+     * @return Attribute<string, never>
+     */
+    public function mediaStoragePath(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->storagePath.'media'
         );
     }
 

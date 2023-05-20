@@ -16,6 +16,7 @@ it('it convert expires at to utc time when storing', function (): void {
     $timeZone = 'Asia/Colombo';
 
     $data = $factory
+        ->withMessage()
         ->withTimeZone($timeZone)
         ->make()
         ->makeVisible('password')
@@ -39,6 +40,7 @@ it('it set no_of_allowed_visits to -1 is empty string is passed', function (): v
     $timeZone = 'Asia/Colombo';
 
     $data = $factory
+        ->withMessage()
         ->withTimeZone($timeZone)
         ->make(['no_of_allowed_visits' => ''])
         ->makeVisible('password')

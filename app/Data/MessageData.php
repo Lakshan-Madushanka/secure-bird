@@ -14,14 +14,18 @@ class MessageData extends Data
 {
     public function __construct(
         public ?string $id,
-        public string $text,
+        public ?string $text,
+        public ?string $textPath,
         public ?string $password,
         public int $no_of_allowed_visits,
         public Carbon|CarbonImmutable|null $expires_at,
         public Lazy|string|null $userTimeZone,
         public int $encryption_progress,
+        public bool $encryption_success,
         public ?Carbon $created_at,
-        public ?string $storagePath
+        public ?string $storagePath,
+        public ?string $textStoragePath,
+        public ?string $mediaStoragePath,
     ) {
     }
 
@@ -40,13 +44,17 @@ class MessageData extends Data
         return new self(
             id: null,
             text: $data['text'],
+            textPath: null,
             password: $data['password'],
             no_of_allowed_visits: $data['no_of_allowed_visits'] !== '' ? (int) $data['no_of_allowed_visits'] : -1,
             expires_at: $expiresAt,
             userTimeZone: Lazy::create(fn () => $data['userTimeZone']),
-            encryption_progress: $data['encryption_progress'] ?? 0,
+            encryption_progress:  0,
+            encryption_success: false,
             created_at: null,
-            storagePath: null
+            storagePath: null,
+            textStoragePath: null,
+            mediaStoragePath: null,
         );
     }
 
@@ -55,13 +63,17 @@ class MessageData extends Data
         return new self(
             id: $message->id,
             text: $message->text ?? "",
+            textPath: $message->text_path,
             password: $message->password,
             no_of_allowed_visits: $message->no_of_allowed_visits,
             expires_at: $message->created_at,
             userTimeZone: null,
             encryption_progress: $message->encryption_progress,
+            encryption_success: $message->encryption_success,
             created_at: $message->created_at,
-            storagePath: $message->storagePath
+            storagePath: $message->storagePath,
+            textStoragePath: $message->textStoragePath,
+            mediaStoragePath: $message->mediaStoragePath,
         );
     }
 

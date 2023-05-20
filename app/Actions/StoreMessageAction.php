@@ -10,6 +10,12 @@ use Illuminate\Http\UploadedFile;
 
 class StoreMessageAction
 {
+    public function __construct(
+        private readonly UploadMediaAction $uploadMediaAction,
+        private readonly EncryptMessageAction $encryptMessageAction
+    ) {
+    }
+
     /**
      * @param  MessageData  $data
      * @param  array<UploadedFile>  $media
@@ -17,12 +23,23 @@ class StoreMessageAction
      */
     public function execute(MessageData $data, array $media = []): Message
     {
-        $message =  Message::create($data->except('text', 'id', 'created_at', 'storagePath')->toArray());
+        $message = Message::create(
+            $data->only(
+                'no_of_allowed_visits',
+                'expires_at',
+                'password'
+            )
+                ->toArray()
+        );
 
-        $storeMediaAction = app(UploadMediaAction::class);
+        $this->uploadMediaAction->execute($media, $message);
+        $this->encryptMessageAction->execute(
+            $message->id,
+            $message->storagePath,
+            $message->textStoragePath,
+            $message->mediaStoragePath,
+        );
 
-        $storeMediaAction->execute($media, $message);
-
-        return  $message->load('media');
+        return $message;
     }
 }

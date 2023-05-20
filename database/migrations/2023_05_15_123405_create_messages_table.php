@@ -15,10 +15,11 @@ return new class () extends Migration {
         Schema::create('messages', function (Blueprint $table): void {
             $table->uuid('id')->primary();
 
-            $table->text('text')->nullable();
+            $table->text('text_path')->nullable();
             $table->string('password');
             $table->integer('no_of_allowed_visits')->default(-1);
             $table->tinyInteger('encryption_progress')->default(0);
+            $table->boolean('encryption_success')->default(false);
             $table->dateTime('expires_at')->nullable();
 
             $table->timestamps();

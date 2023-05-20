@@ -42,12 +42,15 @@ namespace App\Models{
  * App\Models\Message
  *
  * @property string $storagePath
+ * @property string $textStoragePath
+ * @property string $mediaStoragePath
  * @method MessageData getData()
  * @property string $id
- * @property string|null $text
+ * @property string|null $text_path
  * @property string $password
  * @property int $no_of_allowed_visits
  * @property int $encryption_progress
+ * @property bool $encryption_success
  * @property \Illuminate\Support\Carbon|null $expires_at
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
@@ -61,11 +64,12 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Message query()
  * @method static \Illuminate\Database\Eloquent\Builder|Message whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Message whereEncryptionProgress($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Message whereEncryptionSuccess($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Message whereExpiresAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Message whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Message whereNoOfAllowedVisits($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Message wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Message whereText($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Message whereTextPath($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Message whereUpdatedAt($value)
  */
 	class Message extends \Eloquent {}
