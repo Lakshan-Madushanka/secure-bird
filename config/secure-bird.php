@@ -3,5 +3,5 @@
 declare(strict_types=1);
 
 return [
-    'max_media_upload_size' => env('max_media_upload_size')  // in kilobytes
+    'MAX_MEDIA_UPLOAD_SIZE' => env('MAX_MEDIA_UPLOAD_SIZE')  // in kilobytes
 ];

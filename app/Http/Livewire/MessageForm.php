@@ -35,7 +35,7 @@ class MessageForm extends Component
     public function mount(): void
     {
         /** @var string $maxAllowedUploadSize */
-        $maxAllowedUploadSize = config('secure-bird.max_media_upload_size');
+        $maxAllowedUploadSize = config('secure-bird.MAX_MEDIA_UPLOAD_SIZE');
         $this->maxAllowedUploadSize = (int) $maxAllowedUploadSize;
     }
 
