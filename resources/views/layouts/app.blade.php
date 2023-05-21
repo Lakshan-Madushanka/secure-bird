@@ -12,14 +12,12 @@
     <!-- Fonts -->
     <link rel="stylesheet" href="https://fonts.bunny.net/css2?family=Nunito:wght@400;600;700&display=swap">
 
-    <!-- Scripts -->
+    <!-- vite -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
-
     @livewireStyles
-
     @stack('styles')
 </head>
 
@@ -33,8 +31,7 @@
     </main>
 </div>
 
+    @stack('scripts')
     @livewireScripts
-
-    @stack('script')
 </body>
 </html>
