@@ -39,11 +39,11 @@ class StoreMessageAction
 
         ProcessMessageEncryption::dispatch(
             $this->encryptMessageAction,
-            $newMessageData->id,
-            $data->text,
-            $newMessageData->storagePath,
-            $newMessageData->textStoragePath,
-            $newMessageData->mediaStoragePath
+            (string) $newMessageData->id,
+            (string) $data->text,
+            (string) $newMessageData->storagePath,
+            (string) $newMessageData->textStoragePath,
+            (string) $newMessageData->mediaStoragePath
         );
 
         return $message->refresh();

@@ -17,7 +17,7 @@ beforeEach(function (): void {
     Storage::fake();
 });
 
-it('it can store message', function (): void {
+it('can store message', function (): void {
     $data = Message::factory()
         ->withMessage()
         ->withTimeZone('Asia/Colombo')
@@ -32,7 +32,7 @@ it('it can store message', function (): void {
     assertDatabaseCount('messages', 1);
 });
 
-it('it hash the password when store message', function (): void {
+it('hash the password when store message', function (): void {
     $password = 'password';
 
     $data = Message::factory()
@@ -79,5 +79,5 @@ it('call the upload_media_action and encrypt_message_action', function (): void 
 
     $storeMediaAction->execute($message);
 
-    // Queue::assertPushed(ProcessMessageEncryption::class);
+    Queue::assertPushed(ProcessMessageEncryption::class);
 });
