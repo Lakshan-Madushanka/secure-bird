@@ -24,6 +24,7 @@ class ProcessMessageEncryption implements ShouldQueue
     public function __construct(
         private EncryptMessageAction $encryptMessageAction,
         private string $messageId,
+        private string $text,
         private string $storagePath,
         private string $textStoragePath,
         private string $mediaStoragePath
@@ -38,6 +39,7 @@ class ProcessMessageEncryption implements ShouldQueue
     {
         $this->encryptMessageAction->execute(
             $this->messageId,
+            $this->text,
             $this->storagePath,
             $this->textStoragePath,
             $this->mediaStoragePath,

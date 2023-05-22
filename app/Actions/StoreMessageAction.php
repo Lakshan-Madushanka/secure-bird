@@ -33,14 +33,17 @@ class StoreMessageAction
                 ->toArray()
         );
 
+        $newMessageData = MessageData::from($message->refresh());
+
         $this->uploadMediaAction->execute($media, $message);
 
         ProcessMessageEncryption::dispatch(
             $this->encryptMessageAction,
-            $message->id,
-            $message->storagePath,
-            $message->textStoragePath,
-            $message->mediaStoragePath
+            $newMessageData->id,
+            $data->text,
+            $newMessageData->storagePath,
+            $newMessageData->textStoragePath,
+            $newMessageData->mediaStoragePath
         );
 
         return $message->refresh();

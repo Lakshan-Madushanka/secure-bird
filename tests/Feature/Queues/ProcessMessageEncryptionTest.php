@@ -27,6 +27,7 @@ it('process the message encryption action', function (): void {
     $processMessageEncryptionJob = new ProcessMessageEncryption(
         $messageEncryptAction,
         $message->id,
+        $message->text,
         $message->storagePath,
         $message->textStoragePath,
         $message->mediaStoragePath

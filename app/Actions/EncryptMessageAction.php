@@ -22,11 +22,13 @@ class EncryptMessageAction
      */
     public function execute(
         string $messageId,
+        string $text,
         string $storagePath,
         string $textStoragePath,
         string $mediaStoragePath
     ): void {
         $encryptor = Encryptor::create($messageId, $storagePath);
+        $encryptor->setText($text);
         $encryptor->setTextPath($textStoragePath);
         $encryptor->setMediaPath($mediaStoragePath);
         $encryptor->encrypt();
