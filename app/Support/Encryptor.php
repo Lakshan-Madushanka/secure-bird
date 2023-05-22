@@ -21,6 +21,7 @@ class Encryptor
     private int $textEncryptionPercentage = 0;
     private int $mediaEncryptionPercentage = 0;
     private bool $isSuccess = false;
+    private int $totalPercentage = 0;
 
     /**
      * @param  string  $id
@@ -53,7 +54,7 @@ class Encryptor
      */
     public function setTextPath(string $textPath): void
     {
-        $this->text = $textPath;
+        $this->textPath = $textPath;
     }
 
     /**
@@ -71,7 +72,15 @@ class Encryptor
      */
     public function getProgress(): int
     {
-        $progress = (int) round((($this->textEncryptionPercentage + $this->mediaEncryptionPercentage) / 200) * 100);
+        if ($this->totalPercentage === 0) {
+            if (isset($this->text) && $this->mediaExists()) {
+                $this->totalPercentage = 200;
+            } else {
+                $this->totalPercentage = 100;
+            }
+        }
+
+        $progress = (int) round((($this->textEncryptionPercentage + $this->mediaEncryptionPercentage) / $this->totalPercentage) * 100);
 
         if ($this->isSuccess) {
             $progress = 100;
@@ -85,8 +94,6 @@ class Encryptor
      */
     public function encrypt(): void
     {
-        $this->setInitialProgress();
-
         try {
             $this->encryptText();
             $this->encryptMedia();
@@ -99,17 +106,6 @@ class Encryptor
 
         $this->isSuccess = true;
         Event::dispatch(new EncryptionSucceeded($this->id, $this->textPath));
-    }
-
-    public function setInitialProgress(): void
-    {
-        if ( ! isset($this->text)) {
-            $this->textEncryptionPercentage = 100;
-        }
-
-        if ( ! Storage::directoryExists($this->mediaPath)) {
-            $this->mediaEncryptionPercentage = 100;
-        }
     }
 
     private function encryptText(): void
@@ -137,7 +133,7 @@ class Encryptor
     private function encryptMedia(): void
     {
 
-        if ( ! Storage::exists($this->mediaPath)) {
+        if ( ! $this->mediaExists()) {
             $this->setMediaEncryptionPercentage(0, 0);
             return;
         }
@@ -178,6 +174,11 @@ class Encryptor
 
             Storage::move($this->mediaPath.$encryptedFileName, $path);
         }
+    }
+
+    public function mediaExists(): bool
+    {
+        return Storage::exists($this->mediaPath);
     }
 
     /**
