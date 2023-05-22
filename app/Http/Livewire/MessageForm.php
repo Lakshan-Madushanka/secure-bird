@@ -6,6 +6,7 @@ namespace App\Http\Livewire;
 
 use App\Actions\StoreMessageAction;
 use App\Data\MessageData;
+use App\Enums\EncryptionStatus;
 use App\Rules\UploadedMediaSizeRule;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -19,18 +20,21 @@ class MessageForm extends Component
 {
     use WithFileUploads;
 
-    public string $text = "";
+    public string $text = '';
     public string $password = '';
     public int|string $no_of_allowed_visits = '';
     public string $expires_at = '';
     /** @var TemporaryUploadedFile[] */
     public $media = [];
 
-    public string $uuid = '';
+    public string $messageId = '';
     public string $userTimeZone = 'utc';
     public bool $showSecurityForm = false;
 
     public int $maxAllowedUploadSize;
+
+    public int $encryptionProgress;
+    public string $encryptionStatus = '';
 
     public function mount(): void
     {
@@ -85,8 +89,20 @@ class MessageForm extends Component
     {
         $this->validate();
 
-        app(StoreMessageAction::class)
+        $message = app(StoreMessageAction::class)
             ->execute(MessageData::from($this->all()), $this->media);
+
+        $messageData = MessageData::from($message);
+
+        $this->messageId = (string) $messageData->id;
+        $this->encryptionStatus = EncryptionStatus::Started->value;
+
+        $this->showProgressModal($this->messageId);
+    }
+
+    public function showProgressModal(string $messageId): void
+    {
+        $this->emit('openModal', 'show-encryption-progress', ['messageId' => $messageId]);
     }
 
     public function render(): View|\Illuminate\Foundation\Application|Factory|Application

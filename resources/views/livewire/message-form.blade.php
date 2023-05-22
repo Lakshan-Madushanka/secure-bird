@@ -1,4 +1,5 @@
 @php use App\Enums\EncryptionStatus; @endphp
+
 <div x-data wire:init="$set('userTimeZone', Intl.DateTimeFormat().resolvedOptions().timeZone)">
     <x-slot:title>Encrypt your secrets</x-slot:title>
 
@@ -78,13 +79,7 @@
         </div>
     </form>
 
-    @if($encryptionStatus === EncryptionStatus::Started->value)
-        <div>
-            <livewire:show-encryption-progress :messageId="$messageId"/>
-        </div>
-    @endif
-
-    @push('styles')
+@push('styles')
         <style>
             trix-toolbar .trix-button-group--file-tools {
                 display: none;

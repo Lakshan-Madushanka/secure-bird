@@ -5,12 +5,18 @@ declare(strict_types=1);
 
 use App\Http\Livewire\MessageForm;
 
+use App\Models\Message;
 use Illuminate\Http\UploadedFile;
+use Illuminate\Support\Facades\Storage;
 
 use function Pest\Laravel\assertDatabaseCount;
 use function Pest\Livewire\livewire;
 
-it('it can store message', function (): void {
+beforeEach(function (): void {
+    Storage::fake();
+});
+
+it('can store message', function (): void {
     livewire(MessageForm::class)
         ->set('text', 'some text')
         ->set('password', 'password')
@@ -20,9 +26,7 @@ it('it can store message', function (): void {
     assertDatabaseCount('messages', 1);
 });
 
-it('it can store media with message', function (): void {
-    Storage::fake();
-
+it('can store media with message', function (): void {
     $fileName = 'test';
     $file = UploadedFile::fake()->create($fileName);
     $media = [$file];
@@ -34,9 +38,11 @@ it('it can store media with message', function (): void {
         ->set('media', $media)
         ->call('submit');
 
-    $message = \App\Models\Message::query()->latest()->first();
+    $message = Message::query()->latest()->first();
 
     $destination = $message?->storagePath.'/'.$file->hashName();
+
+    expect(Storage::exists($destination));
 
     assertDatabaseCount('messages', 1);
 });
