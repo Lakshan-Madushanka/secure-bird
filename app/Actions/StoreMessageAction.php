@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Actions;
 
 use App\Data\MessageData;
+use App\Jobs\ProcessMessageEncryption;
 use App\Models\Message;
 use Illuminate\Http\UploadedFile;
 
@@ -33,13 +34,15 @@ class StoreMessageAction
         );
 
         $this->uploadMediaAction->execute($media, $message);
-        $this->encryptMessageAction->execute(
+
+        ProcessMessageEncryption::dispatch(
+            $this->encryptMessageAction,
             $message->id,
             $message->storagePath,
             $message->textStoragePath,
-            $message->mediaStoragePath,
+            $message->mediaStoragePath
         );
 
-        return $message;
+        return $message->refresh();
     }
 }
