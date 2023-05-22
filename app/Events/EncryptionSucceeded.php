@@ -4,12 +4,13 @@ declare(strict_types=1);
 
 namespace App\Events;
 
+use Illuminate\Broadcasting\Channel;
 use Illuminate\Broadcasting\InteractsWithSockets;
-use Illuminate\Broadcasting\PrivateChannel;
+use Illuminate\Contracts\Broadcasting\ShouldBroadcast;
 use Illuminate\Foundation\Events\Dispatchable;
 use Illuminate\Queue\SerializesModels;
 
-class EncryptionSucceeded
+class EncryptionSucceeded implements ShouldBroadcast
 {
     use Dispatchable;
     use InteractsWithSockets;
@@ -20,18 +21,26 @@ class EncryptionSucceeded
      */
     public function __construct(public string $id, public string $textPath)
     {
-        //
     }
 
     /**
      * Get the channels the event should broadcast on.
      *
-     * @return array<int, \Illuminate\Broadcasting\Channel>
+     * @return array<int, Channel>
      */
     public function broadcastOn(): array
     {
         return [
-            new PrivateChannel('channel-name'),
+            new Channel("message.{$this->id}"),
         ];
     }
+
+    /**
+     * @return string[]
+     */
+    public function broadcastWith(): array
+    {
+        return [];
+    }
+
 }
