@@ -26,11 +26,13 @@ class MessageData extends Data
         public ?string $storagePath,
         public ?string $textStoragePath,
         public ?string $mediaStoragePath,
+        public ?string $url,
+        public ?string $reference_mail
     ) {
     }
 
     /**
-     * @param  array{text: string, password: string, no_of_allowed_visits: int|string, expires_at?: string, userTimeZone: string, encryption_progress?: int}  $data
+     * @param  array{text: string, password: string, no_of_allowed_visits: int|string, expires_at?: string, userTimeZone: string, encryption_progress?: int, reference_mail: ?string}  $data
      * @return self
      */
     public static function fromArray(array $data): self
@@ -55,6 +57,8 @@ class MessageData extends Data
             storagePath: null,
             textStoragePath: null,
             mediaStoragePath: null,
+            url: null,
+            reference_mail: $data['reference_mail'],
         );
     }
 
@@ -74,6 +78,8 @@ class MessageData extends Data
             storagePath: $message->storagePath,
             textStoragePath: $message->textStoragePath,
             mediaStoragePath: $message->mediaStoragePath,
+            url: $message->url,
+            reference_mail: $message->reference_mail,
         );
     }
 

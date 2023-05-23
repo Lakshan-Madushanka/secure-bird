@@ -26,7 +26,7 @@ class MessageFactory extends Factory
     {
         return [
             'password' => Hash::make('password'),
-            'no_of_allowed_visits' => mt_rand(5, 10),
+            'no_of_allowed_visits' => random_int(5, 10),
             'expires_at' => now()->addMinutes(5),
         ];
     }

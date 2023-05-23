@@ -8,7 +8,7 @@ use App\Models\Message;
 use Carbon\Carbon;
 use Database\Factories\MessageFactory;
 
-it('it convert expires at to utc time when storing', function (): void {
+it('convert expires at to utc time when storing', function (): void {
     /**
      * @var $data MessageFactory
      */
@@ -32,7 +32,7 @@ it('it convert expires at to utc time when storing', function (): void {
     expect($dto->expires_at->diffInSeconds($userUtcTime))->toBe(0);
 });
 
-it('it set no_of_allowed_visits to -1 is empty string is passed', function (): void {
+it('set no_of_allowed_visits to -1 is empty string is passed', function (): void {
     /**
      * @var $data MessageFactory
      */
@@ -49,4 +49,16 @@ it('it set no_of_allowed_visits to -1 is empty string is passed', function (): v
     $dto = MessageData::from($data);
 
     expect($dto->no_of_allowed_visits)->toBe(-1);
+});
+
+it('can generate a url from a model', function (): void {
+    /**
+     * @var $data MessageFactory
+     */
+    $factory = Message::factory();
+    $timeZone = 'Asia/Colombo';
+
+    $data = MessageData::from($factory->create()->refresh());
+
+    expect($data->url)->not()->toBeEmpty();
 });

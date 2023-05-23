@@ -4,7 +4,9 @@ declare(strict_types=1);
 
 namespace App\Http\Livewire;
 
+use App\Data\MessageData;
 use App\Enums\EncryptionStatus;
+use App\Models\Message;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -15,6 +17,7 @@ class ShowEncryptionProgress extends ModalComponent
     public string $messageId;
     public int $percentage = 0;
     public string $status;
+    public string $url;
 
     public function mount(string $messageId): void
     {
@@ -46,6 +49,12 @@ class ShowEncryptionProgress extends ModalComponent
     {
         $this->percentage = 100;
         $this->status = EncryptionStatus::Success->value;
+        $this->url = (string) $this->getMessageData()->url;
+    }
+
+    public function getMessageData(): MessageData
+    {
+        return MessageData::from(Message::find($this->messageId));
     }
 
     public function refreshPage(): void

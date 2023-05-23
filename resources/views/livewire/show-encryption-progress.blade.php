@@ -1,4 +1,5 @@
 @php use App\Enums\EncryptionStatus; @endphp
+
 <div x-data @modal-closed.window="window.location.reload()">
     <div>
         @if($status === EncryptionStatus::Started->value)
@@ -36,7 +37,7 @@
                         }}"
                     class="w-full flex items-center"
                 >
-                    <x-inputs.input readonly id="url" class="!max-w-lg h-10 font-bold" value="lakshan"/>
+                    <x-inputs.input readonly id="url" class="!max-w-lg h-10 font-bold" value="{{$url}}"/>
                     <x-heroicon-o-clipboard
                         @click="setCopyStatus()"
                         id="copy-icon"

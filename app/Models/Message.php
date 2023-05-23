@@ -11,13 +11,15 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Support\Facades\URL;
 use Spatie\LaravelData\WithData;
 
 /**
+ * @method MessageData getData()
  * @property string $storagePath
  * @property string $textStoragePath
  * @property string $mediaStoragePath
- * @method MessageData getData()
+ * @property string $url
  */
 class Message extends Model
 {
@@ -83,6 +85,16 @@ class Message extends Model
     {
         return Attribute::make(
             get: fn () => $this->storagePath.'media'
+        );
+    }
+
+    /**
+     * @return Attribute<string, never>
+     */
+    public function url(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => URL::to($this->id)
         );
     }
 
