@@ -15,6 +15,9 @@
     <!-- vite -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 
+    <!-- Javascript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.11/clipboard.min.js"></script>
+
     <!-- Styles -->
     <link rel="stylesheet" type="text/css" href="https://unpkg.com/trix@2.0.0/dist/trix.css">
     @livewireStyles
