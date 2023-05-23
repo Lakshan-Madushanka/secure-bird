@@ -32,6 +32,7 @@
 
 
     <form
+        x-cloak
         x-show="$wire.get('showSecurityForm')"
         wire:submit.prevent
         class="flex flex-col justify-center items-center mt-8 mb-12 space-y-8"
@@ -40,7 +41,7 @@
             <x-inputs.label for="no_of_allowed_visits">
                 Password
             </x-inputs.label>
-            <x-inputs.password wire:model="password" id="password"/>
+            <x-inputs.password wire:model.defer="password" id="password"/>
             <x-inputs.input-error field="password"/>
         </div>
 
@@ -49,7 +50,7 @@
                 No of allowed visits
             </x-inputs.label>
             <x-inputs.input
-                wire:model="no_of_allowed_visits"
+                wire:model.defer="no_of_allowed_visits"
                 id="no_of_allowed_visits"
                 type="number"
                 min="1" placeholder="No of allowed visits"
@@ -64,7 +65,7 @@
                 Expires at
             </x-inputs.label>
             <x-inputs.input
-                wire:model="expires_at"
+                wire:model.defer="expires_at"
                 id="expires_at"
                 type="datetime-local"
                 placeholder="No of allowed visits"
