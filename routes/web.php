@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\MessagesController;
 use App\Http\Livewire\MessageForm;
 use Illuminate\Support\Facades\Route;
 
@@ -16,3 +17,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', MessageForm::class)->name('home');
+
+Route::middleware(['message.validate'])->prefix('messages')->name('messages.')->group(function (): void {
+    Route::get('{messageId}', [MessagesController::class, 'show'])->name('show');
+});
