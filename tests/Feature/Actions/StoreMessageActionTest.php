@@ -9,12 +9,15 @@ use App\Actions\UploadMediaAction;
 use App\Data\MessageData;
 use App\Jobs\ProcessMessageEncryption;
 use App\Models\Message;
+use App\Notifications\MessageEncryptionSucceeded;
 use Illuminate\Support\Facades\Queue;
+use Illuminate\Support\Facades\Notification;
 
 use function Pest\Laravel\assertDatabaseCount;
 
 beforeEach(function (): void {
     Storage::fake();
+    Notification::fake();
 });
 
 it('can store message', function (): void {
@@ -80,4 +83,34 @@ it('call the upload_media_action and encrypt_message_action', function (): void 
     $storeMediaAction->execute($message);
 
     Queue::assertPushed(ProcessMessageEncryption::class);
+});
+
+it('can send a notification to notify url', function (): void {
+    $data = Message::factory()
+        ->withMessage()
+        ->withTimeZone('Asia/Colombo')
+        ->make()
+        ->makeVisible('password')
+        ->toArray();
+
+    $messageData = MessageData::from($data);
+
+    $createdMessage = app(StoreMessageAction::class)->execute($messageData)->refresh();
+
+    $createdMessageData = MessageData::from($createdMessage);
+
+
+    Notification::assertSentOnDemand(
+        MessageEncryptionSucceeded::class,
+        function (MessageEncryptionSucceeded $notification) use ($createdMessageData) {
+            $reflection = new ReflectionObject($notification);
+
+            $property = $reflection->getProperty('url');
+            $property->setAccessible(true);
+
+            $url = $property->getValue($notification);
+
+            return $url === $createdMessageData->url;
+        }
+    );
 });
