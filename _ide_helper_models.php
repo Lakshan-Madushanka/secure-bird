@@ -16,7 +16,7 @@ namespace App\Models{
  *
  * @method MediaData getData()
  * @property string $id
- * @property string $messages_id
+ * @property string $message_id
  * @property string $name
  * @property string $original_name
  * @property string $full_path
@@ -29,7 +29,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder|Media whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Media whereFullPath($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Media whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Media whereMessagesId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|Media whereMessageId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Media whereName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Media whereOriginalName($value)
  * @method static \Illuminate\Database\Eloquent\Builder|Media whereUpdatedAt($value)
@@ -41,10 +41,11 @@ namespace App\Models{
 /**
  * App\Models\Message
  *
+ * @method MessageData getData()
  * @property string $storagePath
  * @property string $textStoragePath
  * @property string $mediaStoragePath
- * @method MessageData getData()
+ * @property string $url
  * @property string $id
  * @property string|null $text_path
  * @property string $password
@@ -52,25 +53,31 @@ namespace App\Models{
  * @property int $encryption_progress
  * @property bool $encryption_success
  * @property \Illuminate\Support\Carbon|null $expires_at
+ * @property string|null $reference_mail
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Media> $media
  * @property-read int|null $media_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Visit> $visits
  * @property-read int|null $visits_count
+ * @method static \App\Builders\MessageBuilder|Message expired()
  * @method static \Database\Factories\MessageFactory factory($count = null, $state = [])
- * @method static \Illuminate\Database\Eloquent\Builder|Message newModelQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Message newQuery()
- * @method static \Illuminate\Database\Eloquent\Builder|Message query()
- * @method static \Illuminate\Database\Eloquent\Builder|Message whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Message whereEncryptionProgress($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Message whereEncryptionSuccess($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Message whereExpiresAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Message whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Message whereNoOfAllowedVisits($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Message wherePassword($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Message whereTextPath($value)
- * @method static \Illuminate\Database\Eloquent\Builder|Message whereUpdatedAt($value)
+ * @method static \App\Builders\MessageBuilder|Message newModelQuery()
+ * @method static \App\Builders\MessageBuilder|Message newQuery()
+ * @method static \App\Builders\MessageBuilder|Message notExpired()
+ * @method static \App\Builders\MessageBuilder|Message query()
+ * @method static \App\Builders\MessageBuilder|Message valid()
+ * @method static \App\Builders\MessageBuilder|Message visitsNotExceeded()
+ * @method static \App\Builders\MessageBuilder|Message whereCreatedAt($value)
+ * @method static \App\Builders\MessageBuilder|Message whereEncryptionProgress($value)
+ * @method static \App\Builders\MessageBuilder|Message whereEncryptionSuccess($value)
+ * @method static \App\Builders\MessageBuilder|Message whereExpiresAt($value)
+ * @method static \App\Builders\MessageBuilder|Message whereId($value)
+ * @method static \App\Builders\MessageBuilder|Message whereNoOfAllowedVisits($value)
+ * @method static \App\Builders\MessageBuilder|Message wherePassword($value)
+ * @method static \App\Builders\MessageBuilder|Message whereReferenceMail($value)
+ * @method static \App\Builders\MessageBuilder|Message whereTextPath($value)
+ * @method static \App\Builders\MessageBuilder|Message whereUpdatedAt($value)
  */
 	class Message extends \Eloquent {}
 }
@@ -86,6 +93,7 @@ namespace App\Models{
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @property-read \App\Models\Message $message
+ * @method static \Database\Factories\VisitFactory factory($count = null, $state = [])
  * @method static \Illuminate\Database\Eloquent\Builder|Visit newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Visit newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|Visit query()

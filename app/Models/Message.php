@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Models;
 
+use App\Builders\MessageBuilder;
 use App\Data\MessageData;
 use Hash;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -11,6 +12,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Support\Facades\URL;
 use Spatie\LaravelData\WithData;
 
@@ -46,6 +48,15 @@ class Message extends Model
     protected $hidden = [
         'password',
     ];
+
+    /**
+     * @param Builder $query
+     * @return MessageBuilder<Message>
+     */
+    public function newEloquentBuilder($query): MessageBuilder
+    {
+        return new MessageBuilder($query);
+    }
 
     // Accessors and mutators
 
