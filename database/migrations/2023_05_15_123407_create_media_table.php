@@ -14,7 +14,7 @@ return new class () extends Migration {
     {
         Schema::create('media', function (Blueprint $table): void {
             $table->uuid('id');
-            $table->foreignUuid('messages_id')->constrained()->cascadeOnDelete();
+            $table->foreignUuid('message_id')->constrained()->cascadeOnDelete();
 
             $table->string('name');
             $table->string('original_name');

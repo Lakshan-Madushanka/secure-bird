@@ -33,6 +33,6 @@ class Media extends Model
     /** @return BelongsTo<Message, Media> */
     public function message(): BelongsTo
     {
-        return $this->belongsTo(Message::class, 'messages_id', 'id');
+        return $this->belongsTo(Message::class, 'message_id', 'id');
     }
 }

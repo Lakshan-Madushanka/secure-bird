@@ -104,12 +104,12 @@ class Message extends Model
     /** @return HasMany<Visit> */
     public function visits(): HasMany
     {
-        return $this->hasMany(Visit::class, 'messages_id', 'id');
+        return $this->hasMany(Visit::class, 'message_id', 'id');
     }
 
     /** @return HasMany<Media> */
     public function media(): HasMany
     {
-        return $this->hasMany(Media::class, 'messages_id', 'id');
+        return $this->hasMany(Media::class, 'message_id', 'id');
     }
 }
