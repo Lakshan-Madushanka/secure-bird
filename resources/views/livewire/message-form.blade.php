@@ -74,13 +74,40 @@
             <x-inputs.input-error field="expires_at"/>
         </div>
 
+        <div class="w-full sm:w-2/3">
+            <x-inputs.label for="reference_mail">
+                Reference mail
+            </x-inputs.label>
+            <div class="flex items-center relative">
+                <x-inputs.input
+                    wire:model.defer="reference_mail"
+                    id="reference_mail"
+                    type="email"
+                    placeholder="Reference mail"
+                    required
+                />
+                <div
+                    class="tooltip tooltip-info tooltip-left absolute right-[-2rem]"
+                    data-tip="We will send url to this email, so you don't need to wail until encryption process is finished
+                              (This is helpful if your data is large"
+                >
+                    <x-heroicon-o-question-mark-circle class="w-6 h-6"/>
+                </div>
+            </div>
+            {{--small>
+                We will send url to this email, so you don't need to wail until encryption process is finished
+                (This is helpful if your data is large)
+            </small>--}}
+            <x-inputs.input-error field="reference_mail"/>
+        </div>
+
         <div class="w-full sm:w-2/3 !mt-12 flex justify-between">
             <x-button wire:click="previous" target="previous">Previous</x-button>
             <x-button wire:click="submit" target="submit" class="bg-pink-500 hover:bg-pink-700">Get link</x-button>
         </div>
     </form>
 
-@push('styles')
+    @push('styles')
         <style>
             trix-toolbar .trix-button-group--file-tools {
                 display: none;

@@ -28,6 +28,7 @@ class MessageFactory extends Factory
             'password' => Hash::make('password'),
             'no_of_allowed_visits' => random_int(5, 10),
             'expires_at' => now()->addMinutes(5),
+            'reference_mail' => $this->faker->email(),
         ];
     }
 

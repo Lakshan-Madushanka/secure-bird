@@ -8,28 +8,28 @@ use Livewire\Livewire;
 
 use function Pest\Livewire\livewire;
 
-it('text_field_is_required', function (): void {
+test('text_field is required', function (): void {
     $component = livewire(MessageForm::class)
         ->set('text', '')
         ->call('submit')
         ->assertHasErrors(['text' => 'required']);
 });
 
-it('password_field_is_required', function (): void {
+test('password_field is required', function (): void {
     $component = livewire(MessageForm::class)
         ->set('password', '')
         ->call('submit')
         ->assertHasErrors(['password' => 'required']);
 });
 
-it('text_no_of_allowed_visits_field_must_be_greater_than_0', function (): void {
+test('no_of_allowed_visits field must be greater than 0', function (): void {
     $component = Livewire::test(MessageForm::class)
         ->set('no_of_allowed_visits', (int) 0)
         ->call('submit')
         ->assertHasErrors(['no_of_allowed_visits' => 'min:1']);
 });
 
-it('text_expires_at_field_must_be_after_the_current_time', function (): void {
+test('expires_at_field must be after the current time', function (): void {
     $component1 = Livewire::test(MessageForm::class)
         ->set('expires_at', now()->subMinute()->toISOString())
         ->call('submit')
@@ -41,7 +41,7 @@ it('text_expires_at_field_must_be_after_the_current_time', function (): void {
         ->assertHasNoErrors(['expires_at' => 'after']);
 });
 
-it('text_uploaded_media_size_must_not_exceed_25_megabytes', function (): void {
+test('uploaded media size must not exceed 25 megabytes', function (): void {
     $media = [
         UploadedFile::fake()->create(Str::random(5), 25000),
         UploadedFile::fake()->create(Str::random(5), 25000),
@@ -51,4 +51,11 @@ it('text_uploaded_media_size_must_not_exceed_25_megabytes', function (): void {
         ->set('media', $media)
         ->call('submit')
         ->assertHasNoErrors(['media' => 'max:25000']);
+});
+
+it('can validate reference_mail field', function (): void {
+    $component = livewire(MessageForm::class)
+        ->set('reference_mail', 'a')
+        ->call('submit')
+        ->assertHasErrors(['reference_mail' => 'email']);
 });

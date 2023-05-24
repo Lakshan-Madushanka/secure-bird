@@ -35,6 +35,7 @@ class Message extends Model
         'no_of_allowed_visits',
         'encryption_progress',
         'expires_at',
+        'reference_mail',
     ];
 
     protected $casts = [

@@ -28,7 +28,8 @@ class StoreMessageAction
             $data->only(
                 'no_of_allowed_visits',
                 'expires_at',
-                'password'
+                'password',
+                'reference_mail',
             )
                 ->toArray()
         );

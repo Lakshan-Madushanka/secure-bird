@@ -20,6 +20,7 @@ it('can store message', function (): void {
     livewire(MessageForm::class)
         ->set('text', 'some text')
         ->set('password', 'password')
+        ->set('reference_mail', fake()->email())
         ->set('expires_at', now()->addMinutes(5)->toISOString())
         ->call('submit');
 
@@ -34,6 +35,7 @@ it('can store media with message', function (): void {
     livewire(MessageForm::class)
         ->set('text', 'some text')
         ->set('password', 'password')
+        ->set('reference_mail', fake()->email())
         ->set('expires_at', now()->addMinutes(5)->toISOString())
         ->set('media', $media)
         ->call('submit');

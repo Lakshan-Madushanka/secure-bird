@@ -26,6 +26,7 @@ class MessageForm extends Component
     public string $expires_at = '';
     /** @var TemporaryUploadedFile[] */
     public $media = [];
+    public string $reference_mail = '';
 
     public string $messageId = '';
     public string $userTimeZone = 'utc';
@@ -66,6 +67,7 @@ class MessageForm extends Component
             'password' => ['required', Password::defaults()],
             'no_of_allowed_visits' => ['integer', 'min:1'],
             'expires_at' => ['date', 'after:'.now($this->userTimeZone)->toDateTimeString()],
+            'reference_mail' => ['email']
         ];
     }
 
