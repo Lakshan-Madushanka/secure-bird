@@ -25,6 +25,19 @@ class MessageBuilder extends Builder
     /**
      * @return MessageBuilder<Message>
      */
+    public function inValid(): MessageBuilder
+    {
+        return $this->where(function (MessageBuilder $query): void {
+            $query->expired()
+                ->orWhere(function (MessageBuilder $query): void {
+                    $query->visitsExceeded();
+                });
+        });
+    }
+
+    /**
+     * @return MessageBuilder<Message>
+     */
     public function expired(): MessageBuilder
     {
         return $this->where('expires_at', '<=', now());
@@ -46,6 +59,17 @@ class MessageBuilder extends Builder
         return $this->whereHas('visits', function (Builder $query): void {
             $query->select(DB::raw('count(*) as visits_count'))
                 ->havingRaw('no_of_allowed_visits >= visits_count');
+        });
+    }
+
+    /**
+     * @return MessageBuilder<Message>
+     */
+    public function visitsExceeded(): MessageBuilder
+    {
+        return $this->whereHas('visits', function (Builder $query): void {
+            $query->select(DB::raw('count(*) as visits_count'))
+                ->havingRaw('no_of_allowed_visits < visits_count');
         });
     }
 }

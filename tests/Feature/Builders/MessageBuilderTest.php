@@ -58,17 +58,30 @@ it('can filter valid messages', function (): void {
         ->count(2)
         ->create(['expires_at' => now()->addMinute()]);
 
+    $invalidMessages = Message::factory()
+        ->count(3)
+        ->create(['expires_at' => now()->subMinute(5)]);
+
     $results = Message::query()->valid()->get();
 
     expect($results)->toHaveCount(2);
 });
 
 it('can filter invalid messages', function (): void {
-    $message = Message::factory()
-        ->hasVisits(4)
-        ->create(['no_of_allowed_visits' => 3]);
+    Message::factory()
+        ->count(2)
+        ->create(['expires_at' => now()->addMinute()]);
 
-    $results = Message::query()->valid()->get();
+    Message::factory()
+        ->count(3)
+        ->create(['expires_at' => now()->subMinute(5)]);
 
-    expect($results)->toHaveCount(0);
+    Message::factory()
+        ->hasVisits(2)
+        ->count(1)
+        ->create(['no_of_allowed_visits' => 1]);
+
+    $results = Message::query()->inValid()->get();
+
+    expect($results)->toHaveCount(4);
 });
