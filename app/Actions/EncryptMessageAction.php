@@ -5,20 +5,20 @@ declare(strict_types=1);
 namespace App\Actions;
 
 use App\Support\Encryptor;
+use Exception;
 
 class EncryptMessageAction
 {
-    public function __construct()
-    {
-    }
-
     /**
      * @param  string  $messageId
      * Relative path to storage
+     * @param  string  $text
+     * @param  string  $storagePath
      * @param  string  $textStoragePath
      * Relative path to storage
      * @param  string  $mediaStoragePath
      * @return void
+     * @throws Exception
      */
     public function execute(
         string $messageId,
