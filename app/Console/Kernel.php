@@ -6,6 +6,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Storage;
 
 class Kernel extends ConsoleKernel
 {
@@ -14,7 +15,13 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        // $schedule->command('inspire')->hourly();
+        $outputFilePath ='logs\schedules\message\delete-invalid.log';
+
+        if ( ! Storage::exists($outputFilePath)) {
+            Storage::put($outputFilePath, '');
+        }
+
+        $schedule->command('message:delete-invalid')->daily()->appendOutputTo(Storage::path($outputFilePath));
     }
 
     /**
