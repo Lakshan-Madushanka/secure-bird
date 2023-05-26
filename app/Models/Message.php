@@ -21,6 +21,7 @@ use Spatie\LaravelData\WithData;
  * @property string $storagePath
  * @property string $textStoragePath
  * @property string $mediaStoragePath
+ * @property string $decryptedMediaStoragePath.
  * @property string $url
  */
 class Message extends Model
@@ -96,7 +97,17 @@ class Message extends Model
     public function mediaStoragePath(): Attribute
     {
         return Attribute::make(
-            get: fn () => $this->storagePath.'media'
+            get: fn () => $this->storagePath.'media/'
+        );
+    }
+
+    /**
+     * @return Attribute<string, never>
+     */
+    public function decryptedMediaStoragePath(): Attribute
+    {
+        return Attribute::make(
+            get: fn () => $this->storagePath.'media/original/'
         );
     }
 
