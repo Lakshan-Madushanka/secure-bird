@@ -62,11 +62,13 @@ namespace App\Models{
  * @property-read int|null $visits_count
  * @method static \App\Builders\MessageBuilder|Message expired()
  * @method static \Database\Factories\MessageFactory factory($count = null, $state = [])
+ * @method static \App\Builders\MessageBuilder|Message inValid()
  * @method static \App\Builders\MessageBuilder|Message newModelQuery()
  * @method static \App\Builders\MessageBuilder|Message newQuery()
  * @method static \App\Builders\MessageBuilder|Message notExpired()
  * @method static \App\Builders\MessageBuilder|Message query()
  * @method static \App\Builders\MessageBuilder|Message valid()
+ * @method static \App\Builders\MessageBuilder|Message visitsExceeded()
  * @method static \App\Builders\MessageBuilder|Message visitsNotExceeded()
  * @method static \App\Builders\MessageBuilder|Message whereCreatedAt($value)
  * @method static \App\Builders\MessageBuilder|Message whereEncryptionProgress($value)

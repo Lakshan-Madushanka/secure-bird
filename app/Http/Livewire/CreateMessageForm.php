@@ -16,7 +16,7 @@ use Livewire\Component;
 use Livewire\TemporaryUploadedFile;
 use Livewire\WithFileUploads;
 
-class MessageForm extends Component
+class CreateMessageForm extends Component
 {
     use WithFileUploads;
 
@@ -109,6 +109,6 @@ class MessageForm extends Component
 
     public function render(): View|\Illuminate\Foundation\Application|Factory|Application
     {
-        return view('livewire.message-form');
+        return view('livewire.create-message-form');
     }
 }

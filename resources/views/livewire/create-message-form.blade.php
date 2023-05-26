@@ -34,7 +34,7 @@
     <form
         x-cloak
         x-show="$wire.get('showSecurityForm')"
-        wire:submit.prevent
+        wire:submit.prevent="submit"
         class="flex flex-col justify-center items-center mt-8 mb-12 space-y-8"
     >
         <div wire:key="3" class="w-full sm:w-2/3">
@@ -94,10 +94,6 @@
                     <x-heroicon-o-question-mark-circle class="w-6 h-6"/>
                 </div>
             </div>
-            {{--small>
-                We will send url to this email, so you don't need to wail until encryption process is finished
-                (This is helpful if your data is large)
-            </small>--}}
             <x-inputs.input-error field="reference_mail"/>
         </div>
 

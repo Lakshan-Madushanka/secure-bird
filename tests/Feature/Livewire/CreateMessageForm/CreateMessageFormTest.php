@@ -3,7 +3,7 @@
 declare(strict_types=1);
 
 
-use App\Http\Livewire\MessageForm;
+use App\Http\Livewire\CreateMessageForm;
 
 use App\Models\Message;
 use Illuminate\Http\UploadedFile;
@@ -17,7 +17,7 @@ beforeEach(function (): void {
 });
 
 it('can store message', function (): void {
-    livewire(MessageForm::class)
+    livewire(CreateMessageForm::class)
         ->set('text', 'some text')
         ->set('password', 'password')
         ->set('reference_mail', fake()->email())
@@ -32,7 +32,7 @@ it('can store media with message', function (): void {
     $file = UploadedFile::fake()->create($fileName);
     $media = [$file];
 
-    livewire(MessageForm::class)
+    livewire(CreateMessageForm::class)
         ->set('text', 'some text')
         ->set('password', 'password')
         ->set('reference_mail', fake()->email())
