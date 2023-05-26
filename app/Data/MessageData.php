@@ -26,6 +26,7 @@ class MessageData extends Data
         public ?string $storagePath,
         public ?string $textStoragePath,
         public ?string $mediaStoragePath,
+        public ?string $decryptedMediaStoragePath,
         public ?string $url,
         public ?string $reference_mail
     ) {
@@ -57,6 +58,7 @@ class MessageData extends Data
             storagePath: null,
             textStoragePath: null,
             mediaStoragePath: null,
+            decryptedMediaStoragePath: null,
             url: null,
             reference_mail: $data['reference_mail'],
         );
@@ -78,6 +80,7 @@ class MessageData extends Data
             storagePath: $message->storagePath,
             textStoragePath: $message->textStoragePath,
             mediaStoragePath: $message->mediaStoragePath,
+            decryptedMediaStoragePath: $message->decryptedMediaStoragePath,
             url: $message->url,
             reference_mail: $message->reference_mail,
         );
