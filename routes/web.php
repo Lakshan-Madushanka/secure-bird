@@ -2,8 +2,8 @@
 
 declare(strict_types=1);
 
-use App\Http\Controllers\MessagesController;
-use App\Http\Livewire\MessageForm;
+use App\Http\Livewire\CreateMessageForm;
+use App\Http\Livewire\ShowMessage;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,8 +16,8 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-Route::get('/', MessageForm::class)->name('home');
+Route::get('/', CreateMessageForm::class)->name('home');
 
 Route::middleware(['message.validate'])->prefix('messages')->name('messages.')->group(function (): void {
-    Route::get('{messageId}', [MessagesController::class, 'show'])->name('show');
+    Route::get('{messageId}', ShowMessage::class)->name('show');
 });
