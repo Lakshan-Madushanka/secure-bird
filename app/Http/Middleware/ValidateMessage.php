@@ -19,11 +19,11 @@ class ValidateMessage
     public function handle(Request $request, Closure $next): Response
     {
         $isValid = Message::query()
-            ->whereId($request->get('messageId'))
+            ->whereId($request->route('messageId'))
             ->valid()
-            ->exists();
+            ->first();
 
-        if ( ! $isValid) {
+        if (is_null($isValid)) {
             abort(404);
         }
 
