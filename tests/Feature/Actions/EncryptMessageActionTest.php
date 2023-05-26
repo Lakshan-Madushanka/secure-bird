@@ -9,7 +9,7 @@ use App\Models\Message;
 
 use function Pest\Laravel\assertDatabaseCount;
 
-it('it will encrypt text message', function (): void {
+it('will encrypt text message', function (): void {
     Storage::fake();
 
     $data = Message::factory()

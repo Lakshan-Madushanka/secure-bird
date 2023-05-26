@@ -23,30 +23,32 @@ it('can encrypt a text', function (): void {
     $encryptor->encrypt();
 
     expect(Storage::exists($path))->toBeTrue()
-        ->and($encryptor->getProgress())->toBe(100);
+        ->and($encryptor->getProgress())->toBe(100)
+        ->and(Storage::get($path.'text'))->not()->toBe($text);
 
     Event::assertDispatched(DataChunkEncrypted::class);
     Event::assertDispatched(EncryptionSucceeded::class);
-
-    Storage::deleteDirectory($path);
 });
 
 it('can encrypt media', function (): void {
     $id = Str::random();
     $path = 'test/media/';
 
-    createMedia($path);
+    $media = createMedia($path);
+
+    $originalContent = Storage::get($media[0]);
 
     $encryptor = Encryptor::create($id, $path);
     $encryptor->setMediaPath($path);
     $encryptor->encrypt();
 
-    expect($encryptor->getProgress())->toBe(100);
+    $encrptedContent = Storage::get($media[0]);
+
+    expect($encryptor->getProgress())->toBe(100)
+        ->and($encrptedContent)->not()->toBe($originalContent);
 
     Event::assertDispatched(DataChunkEncrypted::class);
     Event::assertDispatched(EncryptionSucceeded::class);
-
-    Storage::deleteDirectory('test');
 });
 
 /**

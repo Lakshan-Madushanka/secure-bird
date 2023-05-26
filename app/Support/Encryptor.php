@@ -32,7 +32,7 @@ class Encryptor
         private readonly string $id,
         private readonly string $path,
     ) {
-        $this->mediaPath = "{$this->path}media";
+        $this->mediaPath = "{$this->path}media/";
         $this->textPath = "{$this->path}text";
     }
 
@@ -132,7 +132,6 @@ class Encryptor
 
     private function encryptMedia(): void
     {
-
         if ( ! $this->mediaExists()) {
             $this->setMediaEncryptionPercentage(0, 0);
             return;
