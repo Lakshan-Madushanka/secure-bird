@@ -40,7 +40,9 @@ class MessageBuilder extends Builder
      */
     public function expired(): MessageBuilder
     {
-        return $this->where('expires_at', '<=', now());
+        return $this
+            ->where('expires_at', '<=', now())
+            ->where('expires_at', '<>', null);
     }
 
     /**
@@ -48,7 +50,9 @@ class MessageBuilder extends Builder
      */
     public function notExpired(): MessageBuilder
     {
-        return $this->where('expires_at', '>', now());
+        return $this
+            ->where('expires_at', '>', now())
+            ->orWhere('expires_at', null);
     }
 
     /**
@@ -58,7 +62,8 @@ class MessageBuilder extends Builder
     {
         return $this->whereHas('visits', function (Builder $query): void {
             $query->select(DB::raw('count(*) as visits_count'))
-                ->havingRaw('no_of_allowed_visits >= visits_count');
+                ->havingRaw('no_of_allowed_visits >= visits_count')
+                ->orHavingRaw('no_of_allowed_visits = -1');
         });
     }
 
@@ -69,7 +74,8 @@ class MessageBuilder extends Builder
     {
         return $this->whereHas('visits', function (Builder $query): void {
             $query->select(DB::raw('count(*) as visits_count'))
-                ->havingRaw('no_of_allowed_visits < visits_count');
+                ->havingRaw('no_of_allowed_visits < visits_count')
+                ->havingRaw('no_of_allowed_visits <> -1');
         });
     }
 }

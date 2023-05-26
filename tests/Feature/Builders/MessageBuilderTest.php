@@ -21,6 +21,22 @@ it('return message if no of visits not exceeded', function (): void {
         ->and($resultData->id)->toBe($messageData->id);
 });
 
+it('return message if no of visits equal to -1(default)', function (): void {
+    $message = Message::factory()
+        ->hasVisits(2)
+        ->create(['no_of_allowed_visits' => -1])
+        ->refresh();
+
+    $messageData = MessageData::from($message);
+
+    $result = Message::query()->visitsNotExceeded()->first();
+    $resultData = MessageData::from($result);
+
+    expect($result)->not()->toBeEmpty()
+        ->and($resultData->id)->toBe($messageData->id);
+});
+
+
 it('return empty if no of visits exceeded', function (): void {
     $message = Message::factory()
         ->hasVisits(4)
@@ -47,6 +63,32 @@ it('can filter not expired messages', function (): void {
     $messageData = MessageData::from($message);
 
     $result = Message::query()->notExpired()->first();
+    $resultData = MessageData::from($result);
+
+    expect($result)->not()->toBeEmpty()
+        ->and($resultData->id)->toBe($messageData->id);
+});
+
+it('return message if expires_at is null', function (): void {
+    $message = Message::factory()->create(['expires_at' => null])->refresh();
+    $messageData = MessageData::from($message);
+
+    $result = Message::query()->notExpired()->first();
+    $resultData = MessageData::from($result);
+
+    expect($result)->not()->toBeEmpty()
+        ->and($resultData->id)->toBe($messageData->id);
+});
+
+it('considor message as valid  if expires_at is null and no_of_allowed_visits is -1', function (): void {
+    $message = Message::factory()->hasVisits(2)->create([
+        'expires_at' => null,
+        'no_of_allowed_visits' => -1,
+    ])->refresh();
+
+    $messageData = MessageData::from($message);
+
+    $result = Message::query()->valid()->first();
     $resultData = MessageData::from($result);
 
     expect($result)->not()->toBeEmpty()
