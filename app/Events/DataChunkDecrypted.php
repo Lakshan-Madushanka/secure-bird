@@ -19,7 +19,7 @@ class DataChunkDecrypted implements ShouldBroadcast
     /**
      * Create a new event instance.
      */
-    public function __construct(private readonly string $id, private readonly int $progress)
+    public function __construct(public readonly string $id, public readonly int $percentage)
     {
         //
     }

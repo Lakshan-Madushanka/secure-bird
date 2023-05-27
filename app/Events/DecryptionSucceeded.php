@@ -37,11 +37,14 @@ class DecryptionSucceeded implements ShouldBroadcast
     }
 
     /**
-     * @return string[]
+     * @return array<string, string|null>
      */
     public function broadcastWith(): array
     {
-        return [];
+        return [
+            'id' => $this->id,
+            'text' => $this->data->text,
+        ];
     }
 
 }
