@@ -13,7 +13,7 @@ beforeEach(function (): void {
     Storage::fake();
 });
 
-it('it can store media for a message', function (): void {
+it('can store media for a message', function (): void {
     $fileName = 'test';
     $file = UploadedFile::fake()->create($fileName);
     $media = [$file];
@@ -27,7 +27,7 @@ it('it can store media for a message', function (): void {
     Storage::disk()->assertExists($destination);
 });
 
-it('it can create a media record in db for a message', function (): void {
+it('can create a media record in db for a message', function (): void {
     $fileName = 'test';
     $file = UploadedFile::fake()->create($fileName);
     $media = [$file];
