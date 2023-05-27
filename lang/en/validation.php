@@ -153,6 +153,7 @@ return [
     'ulid' => 'The :attribute field must be a valid ULID.',
     'uuid' => 'The :attribute field must be a valid UUID.',
     'uploadedMediaSize' => 'The :attribute field should not exceed :size (mb)',
+    'invalid_password' => "Invalid password",
 
     /*
     |--------------------------------------------------------------------------
