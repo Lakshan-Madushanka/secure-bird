@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Http\Livewire;
 
+use App\Actions\DownloadMediaAction;
 use App\Actions\ShowMessageAction;
 use App\Enums\DecryptionStatus;
 use Illuminate\Contracts\Foundation\Application;
@@ -18,6 +19,7 @@ class ShowMessage extends Component
     public string $messageId;
     public string $password;
     public string $text = '';
+    public bool $haveMedia = false;
     public string $decryptionStatus = '';
 
     public function mount(string $messageId): void
@@ -47,7 +49,6 @@ class ShowMessage extends Component
         $this->decryptionStatus = DecryptionStatus::Started->value;
 
         $this->showProgressModal($this->messageId);
-
     }
 
     /**
@@ -72,11 +73,6 @@ class ShowMessage extends Component
         RateLimiter::hit($key);
     }
 
-    public function showProgressModal(string $messageId): void
-    {
-        $this->emit('openModal', 'show-decryption-progress', ['messageId' => $messageId]);
-    }
-
     /**
      * @param  array{id: string, text: string}  $data
      * @return void
@@ -85,7 +81,26 @@ class ShowMessage extends Component
     {
         $this->decryptionStatus = DecryptionStatus::Success->value;
         $this->text = $data['text'];
+
+        $this->haveMedia = $this->mediaExists();
     }
+
+    public function downloadMedia(): void
+    {
+        $this->redirectRoute('messages.mediaDownload', ['messageId' => $this->messageId]);
+    }
+
+    public function mediaExists(): bool
+    {
+        return app(DownloadMediaAction::class)->mediaExists($this->messageId);
+    }
+
+    public function showProgressModal(string $messageId): void
+    {
+        $this->emit('openModal', 'show-decryption-progress', ['messageId' => $messageId]);
+    }
+
+
 
     public function render(): View|\Illuminate\Foundation\Application|Factory|Application
     {

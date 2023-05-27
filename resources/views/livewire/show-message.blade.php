@@ -20,8 +20,9 @@
     @endif
 
     @if($decryptionStatus ===  DecryptionStatus::Success->value)
-        <div class="flex flex-col justify-center items-center space-y-4">
-            <div class="w-full lg:w-2/3 bg-gray-200 collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
+        <div class="flex flex-col justify-center items-center space-y-8">
+            <div
+                class="w-full lg:w-2/3 bg-gray-200 collapse collapse-plus border border-base-300 bg-base-100 rounded-box">
                 <input type="checkbox"/>
                 <div class="collapse-title text-xl font-medium">
                     Click me to show/hide your message
@@ -30,9 +31,15 @@
                     <div class="p-4">{{$text}}</div>
                 </div>
             </div>
-            <div>
-                <p>Medias</p>
-            </div>
+
+            @if($haveMedia)
+                <div class="w-full lg:w-2/3 ">
+                    <p class="text-xl font-medium">Media</p>
+                    <p wire:click="downloadMedia" class="hover:cursor-pointer text-blue-500 mt-2">
+                        Click here to download
+                    </p>
+                </div>
+            @endif
         </div>
     @endif
 </div>
