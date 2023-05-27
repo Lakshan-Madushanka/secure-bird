@@ -13,7 +13,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Query\Builder;
-use Illuminate\Support\Facades\URL;
 use Spatie\LaravelData\WithData;
 
 /**
@@ -117,7 +116,7 @@ class Message extends Model
     public function url(): Attribute
     {
         return Attribute::make(
-            get: fn () => URL::to($this->id)
+            get: fn () => route('messages.show', ['messageId' => $this->id])
         );
     }
 
