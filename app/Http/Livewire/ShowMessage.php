@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace App\Http\Livewire;
 
 use App\Actions\ShowMessageAction;
+use App\Enums\DecryptionStatus;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
@@ -16,11 +17,16 @@ class ShowMessage extends Component
 {
     public string $messageId;
     public string $password;
+    public string $text = '';
+    public string $decryptionStatus = '';
 
     public function mount(string $messageId): void
     {
         $this->messageId = $messageId;
     }
+
+    /** @var string[] */
+    protected $listeners = ['decryptionSucceeded' => 'showContent'];
 
     /**
      * @return array<string, array<int, string>>
@@ -38,6 +44,10 @@ class ShowMessage extends Component
         $this->validate();
 
         app(ShowMessageAction::class)->execute($this->password, $this->messageId);
+        $this->decryptionStatus = DecryptionStatus::Started->value;
+
+        $this->showProgressModal($this->messageId);
+
     }
 
     /**
@@ -60,6 +70,21 @@ class ShowMessage extends Component
         }
 
         RateLimiter::hit($key);
+    }
+
+    public function showProgressModal(string $messageId): void
+    {
+        $this->emit('openModal', 'show-decryption-progress', ['messageId' => $messageId]);
+    }
+
+    /**
+     * @param  array{id: string, text: string}  $data
+     * @return void
+     */
+    public function showContent(array $data): void
+    {
+        $this->decryptionStatus = DecryptionStatus::Success->value;
+        $this->text = $data['text'];
     }
 
     public function render(): View|\Illuminate\Foundation\Application|Factory|Application
