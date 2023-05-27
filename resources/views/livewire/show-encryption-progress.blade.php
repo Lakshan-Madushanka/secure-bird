@@ -18,7 +18,7 @@
         </div>
     </div>
 
-    @if($status !== EncryptionStatus::Started->value)
+    @if($status === EncryptionStatus::Success->value)
         <div>
             <div
                 x-data
@@ -27,7 +27,7 @@
             >
 
                 <label class="w-full mb-2" for="url">
-                    Your url
+                    Your link
                 </label>
 
                 <div
@@ -37,7 +37,7 @@
                         }}"
                     class="w-full flex items-center"
                 >
-                    <x-inputs.input readonly id="url" class="!max-w-lg h-10 font-bold" value="{{$url}}"/>
+                    <x-inputs.input readonly id="url" class="w-full h-10 font-bold" value="{{$url}}"/>
                     <x-heroicon-o-clipboard
                         @click="setCopyStatus()"
                         id="copy-icon"
