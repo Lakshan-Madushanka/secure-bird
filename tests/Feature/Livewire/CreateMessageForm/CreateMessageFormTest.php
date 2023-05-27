@@ -27,6 +27,20 @@ it('can store message', function (): void {
     assertDatabaseCount('messages', 1);
 });
 
+it('set expires_at null when no expires at input value is given', function (): void {
+    livewire(CreateMessageForm::class)
+        ->set('text', 'some text')
+        ->set('password', 'password')
+        ->set('reference_mail', fake()->email())
+        ->call('submit');
+
+    $messageData = Message::first()->getData();
+
+    assertDatabaseCount('messages', 1);
+
+    expect($messageData->expires_at)->toBeNull();
+});
+
 it('can store media with message', function (): void {
     $fileName = 'test';
     $file = UploadedFile::fake()->create($fileName);

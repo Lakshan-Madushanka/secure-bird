@@ -40,7 +40,7 @@ class MessageData extends Data
     {
         $expiresAt = null;
 
-        if (isset($data['expires_at'])) {
+        if (isset($data['expires_at']) && $data['expires_at'] !== '') {
             $expiresAt = self::createExpiresAt($data['expires_at'], $data['userTimeZone']);
         }
 
@@ -72,7 +72,7 @@ class MessageData extends Data
             textPath: $message->text_path,
             password: $message->password,
             no_of_allowed_visits: $message->no_of_allowed_visits,
-            expires_at: $message->created_at,
+            expires_at: $message->expires_at,
             userTimeZone: null,
             encryption_progress: $message->encryption_progress,
             encryption_success: $message->encryption_success,
