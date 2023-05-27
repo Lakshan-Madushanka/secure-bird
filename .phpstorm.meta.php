@@ -119,6 +119,7 @@ namespace PHPSTORM_META {
             'queue.listener' => \Illuminate\Queue\Listener::class,
             'queue.worker' => \Illuminate\Queue\Worker::class,
             'redis' => \Illuminate\Redis\RedisManager::class,
+            'redis.connection' => \Illuminate\Redis\Connections\PhpRedisConnection::class,
             'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
         ]));
     override(\Illuminate\Container\Container::makeWith(0), map([
@@ -231,6 +232,7 @@ namespace PHPSTORM_META {
             'queue.listener' => \Illuminate\Queue\Listener::class,
             'queue.worker' => \Illuminate\Queue\Worker::class,
             'redis' => \Illuminate\Redis\RedisManager::class,
+            'redis.connection' => \Illuminate\Redis\Connections\PhpRedisConnection::class,
             'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
         ]));
     override(\Illuminate\Contracts\Container\Container::get(0), map([
@@ -343,6 +345,7 @@ namespace PHPSTORM_META {
             'queue.listener' => \Illuminate\Queue\Listener::class,
             'queue.worker' => \Illuminate\Queue\Worker::class,
             'redis' => \Illuminate\Redis\RedisManager::class,
+            'redis.connection' => \Illuminate\Redis\Connections\PhpRedisConnection::class,
             'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
         ]));
     override(\Illuminate\Contracts\Container\Container::make(0), map([
@@ -455,6 +458,7 @@ namespace PHPSTORM_META {
             'queue.listener' => \Illuminate\Queue\Listener::class,
             'queue.worker' => \Illuminate\Queue\Worker::class,
             'redis' => \Illuminate\Redis\RedisManager::class,
+            'redis.connection' => \Illuminate\Redis\Connections\PhpRedisConnection::class,
             'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
         ]));
     override(\Illuminate\Contracts\Container\Container::makeWith(0), map([
@@ -567,6 +571,7 @@ namespace PHPSTORM_META {
             'queue.listener' => \Illuminate\Queue\Listener::class,
             'queue.worker' => \Illuminate\Queue\Worker::class,
             'redis' => \Illuminate\Redis\RedisManager::class,
+            'redis.connection' => \Illuminate\Redis\Connections\PhpRedisConnection::class,
             'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
         ]));
     override(\App::get(0), map([
@@ -679,6 +684,7 @@ namespace PHPSTORM_META {
             'queue.listener' => \Illuminate\Queue\Listener::class,
             'queue.worker' => \Illuminate\Queue\Worker::class,
             'redis' => \Illuminate\Redis\RedisManager::class,
+            'redis.connection' => \Illuminate\Redis\Connections\PhpRedisConnection::class,
             'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
         ]));
     override(\App::make(0), map([
@@ -791,6 +797,7 @@ namespace PHPSTORM_META {
             'queue.listener' => \Illuminate\Queue\Listener::class,
             'queue.worker' => \Illuminate\Queue\Worker::class,
             'redis' => \Illuminate\Redis\RedisManager::class,
+            'redis.connection' => \Illuminate\Redis\Connections\PhpRedisConnection::class,
             'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
         ]));
     override(\App::makeWith(0), map([
@@ -903,6 +910,7 @@ namespace PHPSTORM_META {
             'queue.listener' => \Illuminate\Queue\Listener::class,
             'queue.worker' => \Illuminate\Queue\Worker::class,
             'redis' => \Illuminate\Redis\RedisManager::class,
+            'redis.connection' => \Illuminate\Redis\Connections\PhpRedisConnection::class,
             'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
         ]));
     override(\app(0), map([
@@ -1015,6 +1023,7 @@ namespace PHPSTORM_META {
             'queue.listener' => \Illuminate\Queue\Listener::class,
             'queue.worker' => \Illuminate\Queue\Worker::class,
             'redis' => \Illuminate\Redis\RedisManager::class,
+            'redis.connection' => \Illuminate\Redis\Connections\PhpRedisConnection::class,
             'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
         ]));
     override(\resolve(0), map([
@@ -1127,6 +1136,7 @@ namespace PHPSTORM_META {
             'queue.listener' => \Illuminate\Queue\Listener::class,
             'queue.worker' => \Illuminate\Queue\Worker::class,
             'redis' => \Illuminate\Redis\RedisManager::class,
+            'redis.connection' => \Illuminate\Redis\Connections\PhpRedisConnection::class,
             'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
         ]));
     override(\Psr\Container\ContainerInterface::get(0), map([
@@ -1239,6 +1249,7 @@ namespace PHPSTORM_META {
             'queue.listener' => \Illuminate\Queue\Listener::class,
             'queue.worker' => \Illuminate\Queue\Worker::class,
             'redis' => \Illuminate\Redis\RedisManager::class,
+            'redis.connection' => \Illuminate\Redis\Connections\PhpRedisConnection::class,
             'view.engine.resolver' => \Illuminate\View\Engines\EngineResolver::class,
         ]));
 

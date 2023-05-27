@@ -4,7 +4,7 @@
 
 /**
  * A helper file for Laravel, to provide autocomplete information to your IDE
- * Generated for Laravel 10.9.0.
+ * Generated for Laravel 10.12.0.
  *
  * This file should not be included in your code, only analyzed by your IDE!
  *
@@ -3333,13 +3333,13 @@
          * Specify the jobs that should be dispatched instead of faked.
          *
          * @param array|string $jobsToDispatch
-         * @return void 
+         * @return \Illuminate\Support\Testing\Fakes\BusFake 
          * @static 
          */ 
         public static function except($jobsToDispatch)
         {
                         /** @var \Illuminate\Support\Testing\Fakes\BusFake $instance */
-                        $instance->except($jobsToDispatch);
+                        return $instance->except($jobsToDispatch);
         }
                     /**
          * Assert if a job was dispatched based on a truth-test callback.
@@ -5318,7 +5318,7 @@
                     /**
          * Begin a fluent query against a database table.
          *
-         * @param \Closure|\Illuminate\Database\Query\Builder|string $table
+         * @param \Closure|\Illuminate\Database\Query\Builder|\Illuminate\Contracts\Database\Query\Expression|string $table
          * @param string|null $as
          * @return \Illuminate\Database\Query\Builder 
          * @static 
@@ -19531,6 +19531,413 @@
      
 }
 
+    namespace STS\ZipStream { 
+            /**
+     * 
+     *
+     * @see \STS\ZipStream\ZipStream
+     */ 
+        class ZipStreamFacade {
+                    /**
+         * 
+         *
+         * @param string $name
+         * @param array $files
+         * @return \STS\ZipStream\ZipStream 
+         * @static 
+         */ 
+        public static function create($name = null, $files = [])
+        {
+                        /** @var \STS\ZipStream\ZipStream $instance */
+                        return $instance->create($name, $files);
+        }
+                    /**
+         * 
+         *
+         * @param $name
+         * @return \STS\ZipStream\ZipStream 
+         * @static 
+         */ 
+        public static function setName($name)
+        {
+                        /** @var \STS\ZipStream\ZipStream $instance */
+                        return $instance->setName($name);
+        }
+                    /**
+         * 
+         *
+         * @param string|\STS\ZipStream\Contracts\FileContract $source
+         * @param string|null $zipPath
+         * @return \STS\ZipStream\ZipStream 
+         * @static 
+         */ 
+        public static function add($source, $zipPath = null)
+        {
+                        /** @var \STS\ZipStream\ZipStream $instance */
+                        return $instance->add($source, $zipPath);
+        }
+                    /**
+         * Explicitly add raw content instead of from file on disk
+         *
+         * @param $content
+         * @param string $zipPath
+         * @return \STS\ZipStream\ZipStream 
+         * @static 
+         */ 
+        public static function addRaw($content, $zipPath)
+        {
+                        /** @var \STS\ZipStream\ZipStream $instance */
+                        return $instance->addRaw($content, $zipPath);
+        }
+                    /**
+         * 
+         *
+         * @param array $meta
+         * @return \STS\ZipStream\ZipStream 
+         * @static 
+         */ 
+        public static function setMeta($meta)
+        {
+                        /** @var \STS\ZipStream\ZipStream $instance */
+                        return $instance->setMeta($meta);
+        }
+                    /**
+         * 
+         *
+         * @return \Illuminate\Support\Collection 
+         * @static 
+         */ 
+        public static function getMeta()
+        {
+                        /** @var \STS\ZipStream\ZipStream $instance */
+                        return $instance->getMeta();
+        }
+                    /**
+         * Builds the zip and writes to output stream
+         *
+         * @return int 
+         * @throws OverflowException
+         * @static 
+         */ 
+        public static function process()
+        {
+                        /** @var \STS\ZipStream\ZipStream $instance */
+                        return $instance->process();
+        }
+                    /**
+         * 
+         *
+         * @static 
+         */ 
+        public static function configureZip64()
+        {
+                        /** @var \STS\ZipStream\ZipStream $instance */
+                        return $instance->configureZip64();
+        }
+                    /**
+         * 
+         *
+         * @return \Symfony\Component\HttpFoundation\StreamedResponse 
+         * @static 
+         */ 
+        public static function response()
+        {
+                        /** @var \STS\ZipStream\ZipStream $instance */
+                        return $instance->response();
+        }
+                    /**
+         * 
+         *
+         * @param \Request $request
+         * @return \Symfony\Component\HttpFoundation\StreamedResponse 
+         * @static 
+         */ 
+        public static function toResponse($request)
+        {
+                        /** @var \STS\ZipStream\ZipStream $instance */
+                        return $instance->toResponse($request);
+        }
+                    /**
+         * 
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getName()
+        {
+                        /** @var \STS\ZipStream\ZipStream $instance */
+                        return $instance->getName();
+        }
+                    /**
+         * 
+         *
+         * @return int 
+         * @static 
+         */ 
+        public static function getFinalSize()
+        {
+                        /** @var \STS\ZipStream\ZipStream $instance */
+                        return $instance->getFinalSize();
+        }
+                    /**
+         * 
+         *
+         * @param string|\STS\ZipStream\Contracts\FileContract $output
+         * @return \STS\ZipStream\ZipStream 
+         * @static 
+         */ 
+        public static function cache($output)
+        {
+                        /** @var \STS\ZipStream\ZipStream $instance */
+                        return $instance->cache($output);
+        }
+                    /**
+         * 
+         *
+         * @param string|\STS\ZipStream\Contracts\FileContract $output
+         * @return int 
+         * @throws OverflowException
+         * @static 
+         */ 
+        public static function saveTo($output)
+        {
+                        /** @var \STS\ZipStream\ZipStream $instance */
+                        return $instance->saveTo($output);
+        }
+                    /**
+         * 
+         *
+         * @param string $str
+         * @static 
+         */ 
+        public static function send($str)
+        {
+                        /** @var \STS\ZipStream\ZipStream $instance */
+                        return $instance->send($str);
+        }
+                    /**
+         * 
+         *
+         * @return bool 
+         * @static 
+         */ 
+        public static function canPredictZipSize()
+        {
+                        /** @var \STS\ZipStream\ZipStream $instance */
+                        return $instance->canPredictZipSize();
+        }
+                    /**
+         * 
+         *
+         * @return int 
+         * @static 
+         */ 
+        public static function predictZipSize()
+        {
+                        /** @var \STS\ZipStream\ZipStream $instance */
+                        return $instance->predictZipSize();
+        }
+                    /**
+         * 
+         *
+         * @return string 
+         * @static 
+         */ 
+        public static function getFingerprint()
+        {
+                        /** @var \STS\ZipStream\ZipStream $instance */
+                        return $instance->getFingerprint();
+        }
+                    /**
+         * addFile
+         * 
+         * Add a file to the archive.
+         *
+         * @param String $name - path of file in archive (including directory).
+         * @param String $data - contents of file
+         * @param \ZipStream\Option\File $options File Options:
+         *  time     - Last-modified timestamp (seconds since the epoch) of
+         *             this file.  Defaults to the current time.
+         *  comment  - Comment related to this file.
+         *  method   - Storage method for file ("store" or "deflate")
+         * 
+         * Examples:
+         * 
+         *   // add a file named 'foo.txt'
+         *   $data = file_get_contents('foo.txt');
+         *   $zip->addFile('foo.txt', $data);
+         * 
+         *   // add a file named 'bar.jpg' with a comment and a last-modified
+         *   // time of two hours ago
+         *   $data = file_get_contents('bar.jpg');
+         *   $opt->setTime = time() - 2 * 3600;
+         *   $opt->setComment = 'this is a comment about bar.jpg';
+         *   $zip->addFile('bar.jpg', $data, $opt);
+         * @static 
+         */ 
+        public static function addFile($name, $data, $options = null)
+        {            //Method inherited from \ZipStream\ZipStream         
+                        /** @var \STS\ZipStream\ZipStream $instance */
+                        return $instance->addFile($name, $data, $options);
+        }
+                    /**
+         * addFileFromPath
+         * 
+         * Add a file at path to the archive.
+         * 
+         * Note that large files may be compressed differently than smaller
+         * files; see the "Large File Support" section above for more
+         * information.
+         *
+         * @param String $name - name of file in archive (including directory path).
+         * @param String $path - path to file on disk (note: paths should be encoded using
+         *          UNIX-style forward slashes -- e.g '/path/to/some/file').
+         * @param \ZipStream\Option\File $options File Options:
+         *  time     - Last-modified timestamp (seconds since the epoch) of
+         *             this file.  Defaults to the current time.
+         *  comment  - Comment related to this file.
+         *  method   - Storage method for file ("store" or "deflate")
+         * 
+         * Examples:
+         * 
+         *   // add a file named 'foo.txt' from the local file '/tmp/foo.txt'
+         *   $zip->addFileFromPath('foo.txt', '/tmp/foo.txt');
+         * 
+         *   // add a file named 'bigfile.rar' from the local file
+         *   // '/usr/share/bigfile.rar' with a comment and a last-modified
+         *   // time of two hours ago
+         *   $path = '/usr/share/bigfile.rar';
+         *   $opt->setTime = time() - 2 * 3600;
+         *   $opt->setComment = 'this is a comment about bar.jpg';
+         *   $zip->addFileFromPath('bigfile.rar', $path, $opt);
+         * @return void 
+         * @throws \ZipStream\Exception\FileNotFoundException
+         * @throws \ZipStream\Exception\FileNotReadableException
+         * @static 
+         */ 
+        public static function addFileFromPath($name, $path, $options = null)
+        {            //Method inherited from \ZipStream\ZipStream         
+                        /** @var \STS\ZipStream\ZipStream $instance */
+                        $instance->addFileFromPath($name, $path, $options);
+        }
+                    /**
+         * addFileFromStream
+         * 
+         * Add an open stream to the archive.
+         *
+         * @param String $name - path of file in archive (including directory).
+         * @param resource $stream - contents of file as a stream resource
+         * @param \ZipStream\Option\File $options File Options:
+         *  time     - Last-modified timestamp (seconds since the epoch) of
+         *             this file.  Defaults to the current time.
+         *  comment  - Comment related to this file.
+         * 
+         * Examples:
+         * 
+         *   // create a temporary file stream and write text to it
+         *   $fp = tmpfile();
+         *   fwrite($fp, 'The quick brown fox jumped over the lazy dog.');
+         * 
+         *   // add a file named 'streamfile.txt' from the content of the stream
+         *   $x->addFileFromStream('streamfile.txt', $fp);
+         * @return void 
+         * @static 
+         */ 
+        public static function addFileFromStream($name, $stream, $options = null)
+        {            //Method inherited from \ZipStream\ZipStream         
+                        /** @var \STS\ZipStream\ZipStream $instance */
+                        $instance->addFileFromStream($name, $stream, $options);
+        }
+                    /**
+         * addFileFromPsr7Stream
+         * 
+         * Add an open stream to the archive.
+         *
+         * @param String $name - path of file in archive (including directory).
+         * @param \Psr\Http\Message\StreamInterface $stream - contents of file as a stream resource
+         * @param \ZipStream\Option\File $options File Options:
+         *  time     - Last-modified timestamp (seconds since the epoch) of
+         *             this file.  Defaults to the current time.
+         *  comment  - Comment related to this file.
+         * 
+         * Examples:
+         * 
+         *   $stream = $response->getBody();
+         *   // add a file named 'streamfile.txt' from the content of the stream
+         *   $x->addFileFromPsr7Stream('streamfile.txt', $stream);
+         * @return void 
+         * @static 
+         */ 
+        public static function addFileFromPsr7Stream($name, $stream, $options = null)
+        {            //Method inherited from \ZipStream\ZipStream         
+                        /** @var \STS\ZipStream\ZipStream $instance */
+                        $instance->addFileFromPsr7Stream($name, $stream, $options);
+        }
+                    /**
+         * finish
+         * 
+         * Write zip footer to stream.
+         * 
+         *  Example:
+         * 
+         *   // add a list of files to the archive
+         *   $files = array('foo.txt', 'bar.jpg');
+         *   foreach ($files as $path)
+         *     $zip->addFile($path, file_get_contents($path));
+         * 
+         *   // write footer to stream
+         *   $zip->finish();
+         *
+         * @return void 
+         * @throws OverflowException
+         * @static 
+         */ 
+        public static function finish()
+        {            //Method inherited from \ZipStream\ZipStream         
+                        /** @var \STS\ZipStream\ZipStream $instance */
+                        $instance->finish();
+        }
+                    /**
+         * Create a format string and argument list for pack(), then call
+         * pack() and return the result.
+         *
+         * @param array $fields
+         * @return string 
+         * @static 
+         */ 
+        public static function packFields($fields)
+        {            //Method inherited from \ZipStream\ZipStream         
+                        return \STS\ZipStream\ZipStream::packFields($fields);
+        }
+                    /**
+         * Is this file larger than large_file_size?
+         *
+         * @param string $path
+         * @return bool 
+         * @static 
+         */ 
+        public static function isLargeFile($path)
+        {            //Method inherited from \ZipStream\ZipStream         
+                        /** @var \STS\ZipStream\ZipStream $instance */
+                        return $instance->isLargeFile($path);
+        }
+                    /**
+         * Save file attributes for trailing CDR record.
+         *
+         * @param \File $file
+         * @return void 
+         * @static 
+         */ 
+        public static function addToCdr($file)
+        {            //Method inherited from \ZipStream\ZipStream         
+                        /** @var \STS\ZipStream\ZipStream $instance */
+                        $instance->addToCdr($file);
+        }
+         
+    }
+     
+}
+
     namespace Illuminate\Http { 
             /**
      * 
@@ -20325,6 +20732,19 @@ namespace  {
             {
                                 /** @var \Illuminate\Database\Eloquent\Builder $instance */
                                 return $instance->forceCreate($attributes);
+            }
+             
+                /**
+             * Save a new model instance with mass assignment without raising model events.
+             *
+             * @param array $attributes
+             * @return \Illuminate\Database\Eloquent\Model|$this 
+             * @static 
+             */ 
+            public static function forceCreateQuietly($attributes = [])
+            {
+                                /** @var \Illuminate\Database\Eloquent\Builder $instance */
+                                return $instance->forceCreateQuietly($attributes);
             }
              
                 /**
@@ -23602,6 +24022,7 @@ namespace  {
             class Horizon extends \Laravel\Horizon\Horizon {}
             class Livewire extends \Livewire\Livewire {}
             class Flare extends \Spatie\LaravelIgnition\Facades\Flare {}
+            class Zip extends \STS\ZipStream\ZipStreamFacade {}
      
 }
 
