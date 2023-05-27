@@ -37,6 +37,8 @@ class ProcessMessageEncryption implements ShouldQueue
      */
     public function handle(): void
     {
+        sleep(1);
+
         $this->encryptMessageAction->execute(
             $this->messageId,
             $this->text,
