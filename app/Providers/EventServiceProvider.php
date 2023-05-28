@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace App\Providers;
 
+use App\Listener\DecryptionEventSubscriber;
 use App\Listener\EncryptionEventSubscriber;
 use App\Models\Message;
 use App\Observers\MessageObserver;
@@ -30,6 +31,7 @@ class EventServiceProvider extends ServiceProvider
      */
     public $subscribe = [
         EncryptionEventSubscriber::class,
+        DecryptionEventSubscriber::class,
     ];
 
     /**
