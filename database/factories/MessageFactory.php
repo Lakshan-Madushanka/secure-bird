@@ -25,7 +25,7 @@ class MessageFactory extends Factory
     public function definition(): array
     {
         return [
-            'password' => Hash::make('password'),
+            'password' => 'password',
             'no_of_allowed_visits' => random_int(5, 10),
             'expires_at' => now()->addMinutes(5),
             'reference_mail' => $this->faker->email(),
