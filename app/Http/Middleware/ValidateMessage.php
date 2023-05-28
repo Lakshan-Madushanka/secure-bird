@@ -21,9 +21,9 @@ class ValidateMessage
         $isValid = Message::query()
             ->whereId($request->route('messageId'))
             ->valid()
-            ->first();
+            ->exists();
 
-        if (is_null($isValid)) {
+        if (! $isValid) {
             abort(404);
         }
 
