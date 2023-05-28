@@ -19,7 +19,9 @@ class MessageBuilder extends Builder
      */
     public function valid(): MessageBuilder
     {
-        return $this->notExpired()->visitsNotExceeded();
+        return $this->where(function (MessageBuilder $query):void  {
+           $query->notExpired()->visitsNotExceeded();
+        });
     }
 
     /**

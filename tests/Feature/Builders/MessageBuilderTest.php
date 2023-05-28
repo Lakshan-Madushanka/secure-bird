@@ -80,7 +80,7 @@ it('return message if expires_at is null', function (): void {
         ->and($resultData->id)->toBe($messageData->id);
 });
 
-it('considor message as valid  if expires_at is null and no_of_allowed_visits is -1', function (): void {
+it('consider message as valid  if expires_at is null and no_of_allowed_visits is -1', function (): void {
     $message = Message::factory()->hasVisits(2)->create([
         'expires_at' => null,
         'no_of_allowed_visits' => -1,
@@ -109,6 +109,22 @@ it('can filter valid messages', function (): void {
     expect($results)->toHaveCount(2);
 });
 
+it('can filter valid messages when message id is given', function (): void {
+    $validMessage = Message::factory()
+        ->create([
+            'expires_at' => now()->addMinute(),
+            'no_of_allowed_visits' => -1,
+        ])
+        ->refresh()
+        ->getData();
+
+    $result1 = Message::query()->whereId(123)->valid()->get();
+    $result2 = Message::query()->whereId($validMessage->id)->valid()->get();
+
+    expect($result1)->toHaveCount(0)
+        ->and($result2)->toHaveCount(1);
+});
+
 it('can filter invalid messages', function (): void {
     Message::factory()
         ->count(2)
@@ -126,4 +142,19 @@ it('can filter invalid messages', function (): void {
     $results = Message::query()->inValid()->get();
 
     expect($results)->toHaveCount(4);
+});
+
+it('can filter invalid messages when message id is given', function (): void {
+    $validMessage = Message::factory()
+        ->create([
+            'expires_at' => now()->subMinutes(5),
+        ])
+        ->refresh()
+        ->getData();
+
+    $result1 = Message::query()->whereId(123)->inValid()->get();
+    $result2 = Message::query()->whereId($validMessage->id)->inValid()->get();
+
+    expect($result1)->toHaveCount(0)
+        ->and($result2)->toHaveCount(1);
 });
