@@ -35,7 +35,7 @@ it('can delete invalid messages', function (): void {
     expect($noOfDeletedResults)->toBe(5);
 });
 
-it('can delete storage associated with anD invalid message', function (): void {
+it('can delete storage associated with and invalid message', function (): void {
     $data = Message::factory()
         ->withMessage()
         ->withTimeZone('Asia/Colombo')
