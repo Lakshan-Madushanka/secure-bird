@@ -23,7 +23,7 @@ class ValidateMessage
             ->valid()
             ->exists();
 
-        if (! $isValid) {
+        if ( ! $isValid) {
             abort(404);
         }
 
