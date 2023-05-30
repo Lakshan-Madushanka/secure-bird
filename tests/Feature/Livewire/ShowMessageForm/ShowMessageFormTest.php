@@ -35,7 +35,7 @@ test('shows validation error if password is incorrect', function (): void {
         ->getData();
 
     $component = livewire(ShowMessage::class, ['messageId' => $messageData->id])
-        ->set('password', 'password')
+        ->set('password', '12lpap')
         ->call('show')
         ->assertHasErrors('password');
 });
