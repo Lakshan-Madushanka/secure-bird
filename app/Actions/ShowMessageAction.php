@@ -25,9 +25,17 @@ class ShowMessageAction
 
         $this->checkPasswordAction->execute($password, (string) $messageData->password);
 
-        $this->decryptMessageAction->execute($messageId);
+        ProcessMessageDecryption::dispatch($this->decryptMessageAction, $messageId, $this->getMetaData());
+    }
 
-        ProcessMessageDecryption::dispatch($this->decryptMessageAction, $messageId);
+    /** @return array<string, string|null> */
+    public function getMetaData(): array
+    {
+        $request = request();
 
+        return [
+            'ip_address' => $request->ip(),
+            'user_agent' => $request->userAgent(),
+        ];
     }
 }

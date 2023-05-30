@@ -15,8 +15,7 @@ class DecryptionEventSubscriber
         $message = Message::findOrFail($event->id);
 
         $message->visits()->create([
-            'ip_address' => request()->ip(),
-            'user_agent' => request()->userAgent(),
+            ...$event->metaData,
         ]);
     }
 

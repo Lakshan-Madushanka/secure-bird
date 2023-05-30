@@ -83,7 +83,9 @@ it('create a record in visits table after successful decryption', function (): v
 
     $messageData = MessageData::from($createdMessage);
 
-    app(DecryptMessageAction::class)->execute($messageData->id);
+    $showMessageAction = app(\App\Actions\ShowMessageAction::class);
+
+    app(DecryptMessageAction::class)->execute($messageData->id, $showMessageAction->getMetaData());
 
     assertDatabaseCount('visits', 1);
 

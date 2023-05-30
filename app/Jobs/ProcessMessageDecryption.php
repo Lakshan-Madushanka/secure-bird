@@ -19,11 +19,14 @@ class ProcessMessageDecryption implements ShouldQueue
     use SerializesModels;
 
     /**
-     * Create a new job instance.
+     * @param  DecryptMessageAction $decryptMessageAction
+     * @param  string $messageId
+     * @param  array<string, string|null> $metaData
      */
     public function __construct(
-        private DecryptMessageAction $decryptMessageAction,
-        private string $messageId,
+        private readonly DecryptMessageAction $decryptMessageAction,
+        private readonly string $messageId,
+        private readonly array $metaData
     ) {
         //
     }
@@ -37,6 +40,7 @@ class ProcessMessageDecryption implements ShouldQueue
 
         $this->decryptMessageAction->execute(
             $this->messageId,
+            $this->metaData,
         );
     }
 }

@@ -26,6 +26,9 @@ class Decryptor
     private bool $isSuccess = false;
     private int $totalPercentage = 0;
 
+    /** @var array<string, string|null> */
+    private array $metaData = [];
+
     /**
      * @param  string  $id
      * Relative path to storage
@@ -70,6 +73,12 @@ class Decryptor
         $this->decryptedMediaPath = $decryptedMediaPath;
     }
 
+    /** @param array<string, string|null> $metaData */
+    public function setMetaData(array $metaData): void
+    {
+        $this->metaData = $metaData;
+    }
+
 
     /**
      * Get progress in percentage
@@ -112,7 +121,7 @@ class Decryptor
         $this->isSuccess = true;
 
         $data = new DecryptedMessageData($text, $this->decryptedMediaPath);
-        Event::dispatch(new DecryptionSucceeded($this->id, $data));
+        Event::dispatch(new DecryptionSucceeded($this->id, $data, $this->metaData));
     }
 
     private function decryptText(): string

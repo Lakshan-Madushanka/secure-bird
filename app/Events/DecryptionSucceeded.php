@@ -18,9 +18,11 @@ class DecryptionSucceeded implements ShouldBroadcast
     use SerializesModels;
 
     /**
-     * Create a new event instance.
+     * @param  string  $id
+     * @param  DecryptedMessageData  $data
+     * @param   array<string, string|null> $metaData
      */
-    public function __construct(public string $id, public DecryptedMessageData $data)
+    public function __construct(public string $id, public DecryptedMessageData $data, public array $metaData)
     {
     }
 

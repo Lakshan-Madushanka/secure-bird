@@ -6,16 +6,20 @@ namespace App\Actions;
 
 use App\Models\Message;
 use App\Support\Decryptor;
+use Exception;
 
 class DecryptMessageAction
 {
     /**
      * @param  string  $messageId
      * Relative path to storage
+     * @param  array<string,string|null>  $metaData
      * @return void
+     * @throws Exception
      */
     public function execute(
         string $messageId,
+        array $metaData = []
     ): void {
         $messageData = Message::findOrFail($messageId)->getData();
 
@@ -24,6 +28,7 @@ class DecryptMessageAction
         $decryptor->setMediaPath((string) $messageData->mediaStoragePath);
         $decryptor->setTextPath((string) $messageData->textStoragePath);
         $decryptor->setDecryptedMediaPath((string) $messageData->decryptedMediaStoragePath);
+        $decryptor->setMetaData($metaData);
 
         $decryptor->decrypt();
 
