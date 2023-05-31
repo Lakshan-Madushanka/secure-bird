@@ -31,7 +31,7 @@ class ShowMessageVisits extends ModalComponent
     public function render(): View|\Illuminate\Foundation\Application|Factory|Application
     {
         return view('livewire.show-message-visits', [
-            'visits' => VisitData::collection(Message::findOrFail($this->messageId)->visits()->paginate(2)),
+            'visits' => VisitData::collection(Message::findOrFail($this->messageId)->visits()->paginate()),
         ]);
     }
 }
