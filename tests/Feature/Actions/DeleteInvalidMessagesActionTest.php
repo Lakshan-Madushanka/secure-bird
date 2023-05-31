@@ -3,6 +3,7 @@
 declare(strict_types=1);
 
 
+use App\Actions\DeleteInvalidMessagesAction;
 use App\Actions\StoreMessageAction;
 use App\Data\MessageData;
 use App\Models\Message;
@@ -27,10 +28,10 @@ it('can delete invalid messages', function (): void {
         ->count(1)
         ->create([
             'no_of_allowed_visits' => 1,
-            'expires_at' => now()->subMinutes(5)
+            'expires_at' => now()->subMinutes(5),
         ]);
 
-    $noOfDeletedResults = app(\App\Actions\DeleteInvalidMessagesAction::class)->execute();
+    $noOfDeletedResults = app(DeleteInvalidMessagesAction::class)->execute();
 
     expect($noOfDeletedResults)->toBe(5);
 });
@@ -52,7 +53,7 @@ it('can delete storage associated with and invalid message', function (): void {
 
     $createdMessageData = MessageData::from($createdMessage);
 
-    $noOfDeletedResults = app(\App\Actions\DeleteInvalidMessagesAction::class)->execute();
+    $noOfDeletedResults = app(DeleteInvalidMessagesAction::class)->execute();
 
     expect($noOfDeletedResults)->toBe(1)
         ->and(Storage::exists($createdMessage->storagePath))->toBeFalse();

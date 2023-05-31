@@ -45,6 +45,7 @@ namespace App\Models{
  * @property string $storagePath
  * @property string $textStoragePath
  * @property string $mediaStoragePath
+ * @property string $decryptedMediaStoragePath.
  * @property string $url
  * @property string $id
  * @property string|null $text_path
@@ -56,6 +57,7 @@ namespace App\Models{
  * @property string|null $reference_mail
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Visit|null $latestVisit
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Media> $media
  * @property-read int|null $media_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\Visit> $visits
@@ -88,6 +90,7 @@ namespace App\Models{
 /**
  * App\Models\Visit
  *
+ * @method VisitData getData()
  * @property string $id
  * @property string $message_id
  * @property string $ip_address

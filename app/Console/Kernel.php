@@ -15,13 +15,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $outputFilePath ='logs\schedules\message\delete-invalid.log';
-
-        if ( ! Storage::exists($outputFilePath)) {
-            Storage::put($outputFilePath, '');
-        }
-
-        $schedule->command('message:delete-invalid')->daily()->appendOutputTo(Storage::path($outputFilePath));
+        $this->scheduleDeleteInvalidMessageCommand($schedule);
+        $schedule->command('message:delete-decrypted-media')->hourly();
     }
 
     /**
@@ -32,5 +27,16 @@ class Kernel extends ConsoleKernel
         $this->load(__DIR__.'/Commands');
 
         require base_path('routes/console.php');
+    }
+
+    public function scheduleDeleteInvalidMessageCommand(Schedule $schedule): void
+    {
+        $outputFilePath = 'logs\schedules\message\delete-invalid.log';
+
+        if ( ! Storage::exists($outputFilePath)) {
+            Storage::put($outputFilePath, '');
+        }
+
+        $schedule->command('message:delete-invalid')->daily()->appendOutputTo(Storage::path($outputFilePath));
     }
 }

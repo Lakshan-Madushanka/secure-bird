@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Query\Builder;
 use Spatie\LaravelData\WithData;
 
@@ -42,7 +43,7 @@ class Message extends Model
 
     protected $casts = [
         'expires_at' => 'datetime',
-        'encryption_success' => 'bool'
+        'encryption_success' => 'bool',
     ];
 
     protected $hidden = [
@@ -50,7 +51,7 @@ class Message extends Model
     ];
 
     /**
-     * @param Builder $query
+     * @param  Builder  $query
      * @return MessageBuilder<Message>
      */
     public function newEloquentBuilder($query): MessageBuilder
@@ -126,6 +127,14 @@ class Message extends Model
     public function visits(): HasMany
     {
         return $this->hasMany(Visit::class, 'message_id', 'id');
+    }
+
+    /** @return HasOne<Visit> */
+    public function latestVisit(): HasOne
+    {
+        return $this
+            ->hasOne(Visit::class, 'message_id', 'id')
+            ->latestOfMany();
     }
 
     /** @return HasMany<Media> */

@@ -28,7 +28,8 @@ class MessageData extends Data
         public ?string $mediaStoragePath,
         public ?string $decryptedMediaStoragePath,
         public ?string $url,
-        public ?string $reference_mail
+        public ?string $reference_mail,
+        public Lazy|VisitData|null $latestVisit,
     ) {
     }
 
@@ -61,6 +62,7 @@ class MessageData extends Data
             decryptedMediaStoragePath: null,
             url: null,
             reference_mail: $data['reference_mail'],
+            latestVisit: null
         );
     }
 
@@ -83,6 +85,7 @@ class MessageData extends Data
             decryptedMediaStoragePath: $message->decryptedMediaStoragePath,
             url: $message->url,
             reference_mail: $message->reference_mail,
+            latestVisit: Lazy::whenLoaded('latestVisit', $message, fn () => $message->latestVisit?->getData())
         );
     }
 
