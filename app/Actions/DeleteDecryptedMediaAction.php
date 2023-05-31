@@ -18,7 +18,7 @@ class DeleteDecryptedMediaAction
             ->where('encryption_success', true)
             ->with('latestVisit')
             ->chunkById(100, function (Collection $messages): void {
-                $messages->each(function (Model $message, string $key): mixed {
+                $messages->each(function (Model $message, string $key): void {
                     // We need to delete decrypted medias that has visits longer than 1h
                     /** @var Message $message */
                     $messageData = $message->getData();
