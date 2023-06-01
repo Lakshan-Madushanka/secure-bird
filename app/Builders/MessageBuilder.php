@@ -64,7 +64,7 @@ class MessageBuilder extends Builder
     {
         return $this->whereHas('visits', function (Builder $query): void {
             $query->select(DB::raw('count(*) as visits_count'))
-                ->havingRaw('no_of_allowed_visits >= visits_count')
+                ->havingRaw('no_of_allowed_visits > visits_count')
                 ->orHavingRaw('no_of_allowed_visits = -1');
         });
     }
@@ -76,7 +76,7 @@ class MessageBuilder extends Builder
     {
         return $this->whereHas('visits', function (Builder $query): void {
             $query->select(DB::raw('count(*) as visits_count'))
-                ->havingRaw('no_of_allowed_visits < visits_count')
+                ->havingRaw('no_of_allowed_visits <= visits_count')
                 ->havingRaw('no_of_allowed_visits <> -1');
         });
     }

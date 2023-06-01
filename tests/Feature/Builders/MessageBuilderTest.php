@@ -47,6 +47,36 @@ it('return empty if no of visits exceeded', function (): void {
     expect($result)->toBeEmpty();
 });
 
+it('return empty if no of visits equal to allocated no of visits', function (): void {
+    $message = Message::factory()
+        ->hasVisits(4)
+        ->create(['no_of_allowed_visits' => 4]);
+
+    $result = Message::query()->visitsNotExceeded()->get();
+
+    expect($result)->toBeEmpty();
+});
+
+it('return message if no of visits exceeded', function (): void {
+    $message = Message::factory()
+        ->hasVisits(4)
+        ->create(['no_of_allowed_visits' => 3]);
+
+    $result = Message::query()->visitsExceeded()->get();
+
+    expect($result)->toHaveCount(1);
+});
+
+it('return message if no of visits equal to allocated visits', function (): void {
+    $message = Message::factory()
+        ->hasVisits(4)
+        ->create(['no_of_allowed_visits' => 4]);
+
+    $result = Message::query()->visitsExceeded()->get();
+
+    expect($result)->toHaveCount(1);
+});
+
 it('can filter expired messages', function (): void {
     $message = Message::factory()->create(['expires_at' => now()->subMinute()])->refresh();
     $messageData = MessageData::from($message);
