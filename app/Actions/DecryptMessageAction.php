@@ -31,6 +31,5 @@ class DecryptMessageAction
         $decryptor->setMetaData($metaData);
 
         $decryptor->decrypt();
-
     }
 }

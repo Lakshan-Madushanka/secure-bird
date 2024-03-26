@@ -29,11 +29,7 @@ class DownloadMediaAction
 
         $media = $message->media;
 
-        return ! ($media->isEmpty())
-
-
-
-        ;
+        return ! ($media->isEmpty());
     }
     /**
      * @param  string  $messageId

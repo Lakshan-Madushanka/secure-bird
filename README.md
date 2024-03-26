@@ -1,6 +1,8 @@
 ## Laravel boilerplate
 My basic Laravel project setup.
 
+<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://github.com/Lakshan-Madushanka/secure-bird/blob/main/public/images/favicon.svg" width="400" alt="Laravel Logo"></a></p>
+
 ### Configurations
 
 - Pint configuration.
