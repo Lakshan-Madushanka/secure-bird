@@ -6,7 +6,7 @@
             <p class="p-4 text-2xl font-bold">Your message is being encrypting ...</p>
         @endif
         @if($status === EncryptionStatus::Success->value)
-            <p class="p-4 text-2xl font-bold">Encryption succeeded</p>
+            <p class="p-4 text-2xl font-bold">Encryption Succeeded.</p>
         @endif
 
         <div class="mt-4 mb-8 flex justify-center items-center">
