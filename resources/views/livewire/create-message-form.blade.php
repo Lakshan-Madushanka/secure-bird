@@ -1,6 +1,7 @@
-@php use App\Enums\EncryptionStatus; @endphp
-
-<div x-data wire:init="$set('userTimeZone', Intl.DateTimeFormat().resolvedOptions().timeZone)">
+<div
+    x-data
+    wire:init="$set('userTimeZone', Intl.DateTimeFormat().resolvedOptions().timeZone)"
+>
     <x-slot:title>Encrypt your secrets</x-slot:title>
 
     <h1 class="flex justify-center text-center text-5xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-rose-400 via-fuchsia-500 to-indigo-500">

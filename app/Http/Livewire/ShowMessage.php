@@ -92,7 +92,6 @@ class ShowMessage extends Component
     {
         $this->decryptionStatus = DecryptionStatus::Success->value;
         $this->text = $data['text'];
-
         $this->haveMedia = $this->mediaExists();
     }
 

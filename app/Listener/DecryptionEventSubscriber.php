@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace App\Listener;
 
+use App\Actions\SendMessageVisitCompletedMailAction;
+use App\Actions\SendMessageVisitedMailAction;
 use App\Events\DecryptionSucceeded;
 use App\Models\Message;
 use Illuminate\Events\Dispatcher;
@@ -14,9 +16,16 @@ class DecryptionEventSubscriber
     {
         $message = Message::findOrFail($event->id);
 
-        $message->visits()->create([
+        $visit = $message->visits()->create([
             ...$event->metaData,
         ]);
+
+        $message->setRelation('visits', $visit);
+
+        app(SendMessageVisitedMailAction::class)->execute($message);
+
+        $message->unsetRelation('visits');
+        app(SendMessageVisitCompletedMailAction::class)->execute($message);
     }
 
     /**

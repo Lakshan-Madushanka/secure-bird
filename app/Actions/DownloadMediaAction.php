@@ -8,12 +8,14 @@ use App\Data\MediaData;
 use App\Data\MessageData;
 use App\Models\Media;
 use App\Models\Message;
+use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Storage;
+use STS\ZipStream\ZipStream;
 use Zip;
 
 class DownloadMediaAction
 {
-    public function execute(string $messageId): \STS\ZipStream\ZipStream|bool
+    public function execute(string $messageId): ZipStream|bool
     {
         if ( ! $this->mediaExists($messageId)) {
             return false;
@@ -33,9 +35,9 @@ class DownloadMediaAction
     }
     /**
      * @param  string  $messageId
-     * @return \Illuminate\Support\Collection<string, string|null>
+     * @return Collection<string, string|null>
      */
-    public function getNames(string $messageId): \Illuminate\Support\Collection
+    public function getNames(string $messageId): Collection
     {
         $message = Message::findOrFail($messageId);
         $messageData = MessageData::from($message);

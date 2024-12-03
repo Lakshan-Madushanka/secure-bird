@@ -53,6 +53,4 @@ class MessageFactory extends Factory
             }
         );
     }
-
-
 }

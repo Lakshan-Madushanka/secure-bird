@@ -5,6 +5,9 @@ declare(strict_types=1);
 use App\Http\Controllers\MessagesMediaController;
 use App\Http\Livewire\CreateMessageForm;
 use App\Http\Livewire\ShowMessage;
+use App\Mail\MessageVisitCompleted;
+use App\Mail\MessageVisited;
+use App\Models\Message;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,4 +25,8 @@ Route::get('/', CreateMessageForm::class)->name('home');
 Route::middleware(['message.validate'])->prefix('messages')->name('messages.')->group(function (): void {
     Route::get('{messageId}', ShowMessage::class)->name('show');
     Route::get('{messageId}/media-download', [MessagesMediaController::class, 'download'])->name('mediaDownload');
+});
+
+Route::get('test', function () {
+  return (new MessageVisitCompleted(Message::latest()->with('visits')->first()))->render();
 });
