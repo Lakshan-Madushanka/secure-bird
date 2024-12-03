@@ -40,7 +40,7 @@
             @if($haveMedia)
                 <div class="w-full lg:w-2/3">
                     <p class="text-xl font-medium">Media</p>
-                    <p wire:click="downloadMedia" class="hover:cursor-pointer text-blue-500 mt-2">
+                    <p x-data @click="window.open(@js(route('messages.mediaDownload', ['messageId' => $this->messageId])), '_blank')" class="hover:cursor-pointer text-blue-500 mt-2">
                         Click here to download
                     </p>
                 </div>

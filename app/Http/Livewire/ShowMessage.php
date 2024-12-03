@@ -12,6 +12,7 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\Exceptions\ThrottleRequestsException;
+use Illuminate\Support\Facades\Storage;
 use Livewire\Component;
 use RateLimiter;
 
@@ -95,7 +96,7 @@ class ShowMessage extends Component
         $this->haveMedia = $this->mediaExists();
     }
 
-    public function getVisitsCountProperty(): int
+    /*public function getVisitsCountProperty(): int
     {
         return Message::findOrFail($this->messageId)->visits()->count();
     }*/
