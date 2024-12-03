@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Actions;
 
 use App\Mail\MessageVisited;
@@ -12,7 +14,7 @@ class SendMessageVisitedMailAction
     {
         $message->load('visits');
 
-        if( $message?->reference_mail) {
+        if ($message?->reference_mail) {
             Mail::to($message->reference_mail)->send(new MessageVisited($message));
         }
     }

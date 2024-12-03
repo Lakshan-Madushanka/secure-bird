@@ -8,7 +8,6 @@ use App\Actions\StoreMessageAction;
 use App\Data\MessageData;
 use App\Events\DecryptionSucceeded;
 use App\Models\Message;
-
 use App\Models\Visit;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Event;
@@ -83,7 +82,7 @@ it('create a record in visits table after successful decryption', function (): v
 
     $messageData = MessageData::from($createdMessage);
 
-    $showMessageAction = app(\App\Actions\ShowMessageAction::class);
+    $showMessageAction = app(App\Actions\ShowMessageAction::class);
 
     app(DecryptMessageAction::class)->execute($messageData->id, $showMessageAction->getMetaData());
 

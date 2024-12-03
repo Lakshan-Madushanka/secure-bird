@@ -34,9 +34,9 @@ it('pass the rule when type is not array', function (): void {
 
 it('fail the rule when allowed limit exceeded', function (): void {
     $files = [
-        \Illuminate\Http\UploadedFile::fake()->create('file1', 1200),
-        \Illuminate\Http\UploadedFile::fake()->create('file1', 1200),
-        \Illuminate\Http\UploadedFile::fake()->create('file1', 1200),
+        Illuminate\Http\UploadedFile::fake()->create('file1', 1200),
+        Illuminate\Http\UploadedFile::fake()->create('file1', 1200),
+        Illuminate\Http\UploadedFile::fake()->create('file1', 1200),
     ];
 
     $invalid = false;
@@ -52,9 +52,9 @@ it('fail the rule when allowed limit exceeded', function (): void {
 
 it('pass the rule when allowed limit not exceeded', function (): void {
     $files = [
-        \Illuminate\Http\UploadedFile::fake()->create('file1', 1200),
-        \Illuminate\Http\UploadedFile::fake()->create('file1', 1200),
-        \Illuminate\Http\UploadedFile::fake()->create('file1', 1200),
+        Illuminate\Http\UploadedFile::fake()->create('file1', 1200),
+        Illuminate\Http\UploadedFile::fake()->create('file1', 1200),
+        Illuminate\Http\UploadedFile::fake()->create('file1', 1200),
     ];
 
     $invalid = false;

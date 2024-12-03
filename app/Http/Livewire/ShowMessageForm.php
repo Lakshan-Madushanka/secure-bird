@@ -10,16 +10,14 @@ use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 
-
 class ShowMessageForm extends ModalComponent
 {
-
     public string $messageId;
 
     public function rules(): array
     {
         return [
-            'messageId' => ['required', new MessageRule]
+            'messageId' => ['required', new MessageRule()]
         ];
     }
 

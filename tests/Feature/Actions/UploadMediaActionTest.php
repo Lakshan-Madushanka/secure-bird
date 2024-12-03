@@ -6,7 +6,6 @@ declare(strict_types=1);
 use App\Actions\UploadMediaAction;
 use App\Models\Message;
 use Illuminate\Support\Facades\Storage;
-
 use Illuminate\Http\UploadedFile;
 
 beforeEach(function (): void {
@@ -40,7 +39,7 @@ it('can create a media record in db for a message', function (): void {
 
     Storage::disk()->assertExists($destination);
 
-    /** @var \App\Data\MediaData $mediaRecord */
+    /** @var App\Data\MediaData $mediaRecord */
     $mediaRecord = $message->media()->first()?->getData();
 
     expect($mediaRecord->name)->toBe($file->hashName())

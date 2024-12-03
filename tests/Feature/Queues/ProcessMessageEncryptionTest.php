@@ -5,7 +5,6 @@ declare(strict_types=1);
 
 use App\Actions\EncryptMessageAction;
 use App\Data\MessageData;
-
 use App\Jobs\ProcessMessageEncryption;
 use App\Models\Message;
 
