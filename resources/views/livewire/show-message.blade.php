@@ -20,7 +20,7 @@
     @endif
 
     @if($decryptionStatus ===  DecryptionStatus::Success->value)
-        <div class="flex flex-col justify-center items-center space-y-8">
+        <div x-data @beforeunload.window="$wire.removeDecryptedMedia" class="flex flex-col justify-center items-center space-y-8">
             <div class="flex w-full lg:w-2/3 items-start space-x-4">
                 <div
                     class="w-[85%] bg-gray-200 collapse collapse-plus border border-base-300 bg-base-100 rounded-box">

@@ -98,11 +98,17 @@ class ShowMessage extends Component
     public function getVisitsCountProperty(): int
     {
         return Message::findOrFail($this->messageId)->visits()->count();
-    }
+    }*/
 
-    public function downloadMedia(): void
+    public function removeDecryptedMedia(): void
     {
-        $this->redirectRoute('messages.mediaDownload', ['messageId' => $this->messageId]);
+        $msg = Message::findOrFail($this->messageId);
+
+        $path = $msg->decryptedMediaStoragePath;
+
+        if (Storage::exists($path)) {
+            Storage::deleteDirectory($path);
+        }
     }
 
     public function mediaExists(): bool
