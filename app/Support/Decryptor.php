@@ -148,7 +148,6 @@ class Decryptor
             $this->setTextDecryptionPercentage($currentLine, $noOfLines);
 
             Event::dispatch(new DataChunkDecrypted($this->id, $this->getProgress()));
-
         }
 
         return $text;
