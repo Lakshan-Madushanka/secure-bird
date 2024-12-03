@@ -41,7 +41,7 @@ class UploadedMediaSizeRule implements ValidationRule
         });
 
 
-        if (($size/1024) > $this->size) {
+        if (($size / 1024) > $this->size) {
             // @phpstan-ignore-next-line
             $fail('validation.uploadedMediaSize')?->translate([
                 'size' => $this->size / 1000

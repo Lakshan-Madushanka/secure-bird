@@ -24,7 +24,7 @@ it('throws route not found exception for invalid message id', function (): void 
 
     $middleware->handle($request, static function () use (&$requestSucceeded) {
         $requestSucceeded = true;
-        return new \Symfony\Component\HttpFoundation\Response();
+        return new Symfony\Component\HttpFoundation\Response();
     });
 })->throws(NotFoundHttpException::class);
 

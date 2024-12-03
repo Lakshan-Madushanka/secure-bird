@@ -8,7 +8,6 @@ use App\Mail\MessageVisited;
 use App\Models\Message;
 use App\Models\Visit;
 
-
 it('wont send mail to the owner if reference mail is empty', function (): void {
     Mail::fake();
 
@@ -35,5 +34,3 @@ it('send mail to the owner after message is visited', function (): void {
 
     Mail::assertSent(MessageVisited::class, 1);
 });
-
-

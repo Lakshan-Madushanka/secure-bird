@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 namespace App\Rules;
 
 use App\Models\Message;
@@ -11,7 +13,7 @@ class MessageRule implements ValidationRule
     /**
      * Run the validation rule.
      *
-     * @param  \Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
+     * @param  Closure(string): \Illuminate\Translation\PotentiallyTranslatedString  $fail
      */
     public function validate(string $attribute, mixed $value, Closure $fail): void
     {
@@ -20,7 +22,7 @@ class MessageRule implements ValidationRule
             ->valid()
             ->exists();
 
-        if (!$exists) {
+        if ( ! $exists) {
             $fail('Invalid message Id');
         }
     }
