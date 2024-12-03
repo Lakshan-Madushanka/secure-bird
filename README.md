@@ -1,7 +1,21 @@
-## Laravel boilerplate
-My basic Laravel project setup.
+# Secure Bird - Safeguard your sensitive information securely.
+Secure bSecure Bird is a secure data-sharing system that enables you to share sensitive information instantly.
 
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://github.com/Lakshan-Madushanka/secure-bird/blob/main/public/images/favicon.svg" width="400" alt="Laravel Logo"></a></p>
+<p align="center">
+<a href="https://github.com/Lakshan-Madushanka/secure-bird" target="_blank">
+<img src="https://github.com/Lakshan-Madushanka/secure-bird/blob/main/public/images/favicon.svg" width="400" alt="Secure Bird Logo">
+</a>
+</p>
+
+## Features
+- 🔓 No Login Required
+- 🗃️ Supports Media (images, videos, etc.)
+- 🔐 Offers Various Types of Security Constraints:
+  - 🔑 Password Protection
+  - 📅 Expiration Date
+  - 🔢 Visit Limits
+- 📧 Status Notifications Sent to the Owner via Email (when a reference email address is provided).
+
 
 ### Configurations
 
