@@ -1,12 +1,14 @@
 <div align="center">
 
-# Secure Bird - Safeguard your sensitive information securely.
-Secure Bird is a secure data-sharing system that enables you to share sensitive information instantly.
+# Secure Bird - Share your sensitive information securely.
 
 <a href="https://github.com/Lakshan-Madushanka/secure-bird" target="_blank">
-<img src="https://github.com/Lakshan-Madushanka/secure-bird/blob/main/public/images/favicon.svg" width="400" alt="Secure Bird Logo">
+<img src="https://github.com/Lakshan-Madushanka/secure-bird/blob/main/public/images/favicon.svg" width="300" alt="Secure Bird Logo">
 </a>
 </div>
+
+## Overview
+Secure Bird is a secure data-sharing system that enables you to share sensitive information instantly.
 
 ## Features
 - 🔓 No Login Required
@@ -18,13 +20,13 @@ Secure Bird is a secure data-sharing system that enables you to share sensitive 
 - 📧 Status Notifications Sent to the Owner via Email (when a reference email address is provided).
 
 
-### Configurations
+## Configurations
 
 - Pint configuration.
 - LaraStan
 - GitHub Actions
 
-### Installation
+## Installation
 
 1). Clone the repository.
 
