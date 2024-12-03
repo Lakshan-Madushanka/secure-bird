@@ -21,7 +21,7 @@ jobs:
         uses: actions/checkout@v3
 
       - name: Start up docker compose
-        run: docker-compose up -d
+        run: docker compose up -d
 
       - name: Wait 1 minute until docker finish its setup
         run: |
@@ -30,10 +30,10 @@ jobs:
 
       - name: Install composer dependencies
         run: composer install
-        
+
       - name: Install npm dependencies
         run: npm install
-        
+
       - name: Build vite assets
         run: npm run build
 
