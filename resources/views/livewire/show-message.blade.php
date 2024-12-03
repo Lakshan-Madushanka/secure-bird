@@ -32,10 +32,9 @@
                         <div class="p-4">{!! $text !!}</div>
                     </div>
                 </div>
-                {{--                Hidden for security reasons--}}
-                <div wire:click="showVisitsModal" class="hidden text-blue-600 hover:cursor-pointer">
-                    <p class="mt-4">Visits ({{$this->visits_count}})</p>
-                </div>
+{{--                <div wire:click="showVisitsModal" class="hidden text-blue-600 hover:cursor-pointer">--}}
+{{--                    <p class="mt-4">Visits ({{$this->visits_count}})</p>--}}
+{{--                </div>--}}
             </div>
 
             @if($haveMedia)
