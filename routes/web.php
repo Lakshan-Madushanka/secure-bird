@@ -20,7 +20,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', CreateMessageForm::class)->name('home');
+
 Route::get('about', fn() => view('pages.about'))->name('about');
+Route::get('how-it-works', fn() => view('pages.howItWorks'))->name('howItWorks');
 
 Route::middleware(['message.validate'])->prefix('messages')->name('messages.')->group(function (): void {
     Route::get('{messageId}', ShowMessage::class)->name('show');
