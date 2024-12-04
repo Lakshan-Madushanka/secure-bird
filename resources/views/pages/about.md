@@ -18,15 +18,11 @@ What We Offer
 *   End-to-End Encryption Your data is encrypted using advanced algorithms, ensuring that only the intended recipient can access it.
 *   Customizable Security Options Add layers of security by setting passwords, limiting link visits, or specifying expiration dates.
 *   Easy Sharing Simply upload your data, set your preferences, and share the generated link. It's that simple!
-*   Privacy-Focused
+*   Privacy-Focused 
+    *  No login required.
+    *  We never store unencrypted data.
+    *  Receive notifications about link access if you provide a reference email.
     
-    No login required.
-    
-    We never store unencrypted data.
-    
-    Receive notifications about link access if you provide a reference email.
-    
-
 * * *
 
 Why Choose Secure Bird?
