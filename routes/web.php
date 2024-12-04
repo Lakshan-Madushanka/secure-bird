@@ -20,10 +20,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 Route::get('/', CreateMessageForm::class)->name('home');
+Route::get('about', fn() => view('pages.about'))->name('about');
 
 Route::middleware(['message.validate'])->prefix('messages')->name('messages.')->group(function (): void {
     Route::get('{messageId}', ShowMessage::class)->name('show');
     Route::get('{messageId}/media-download', [MessagesMediaController::class, 'download'])->name('mediaDownload');
 });
 
-Route::get('test', fn () => (new MessageVisitCompleted(Message::latest()->with('visits')->first()))->render());
+//Route::get('test', fn () => dump('test'));
