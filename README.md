@@ -2,6 +2,9 @@
     
 # <img src="https://github.com/user-attachments/assets/8097dd59-7b96-4499-8cf2-b6898e39de82" width="300" alt="Secure Bird Logo">
 
+**[About](https://github.com/Lakshan-Madushanka/secure-bird/blob/main/resources/views/pages/about.md)** |
+**[How It Works](https://github.com/Lakshan-Madushanka/secure-bird/blob/main/resources/views/pages/howItWorkd.md)** 
+
 <a href="https://github.com/Lakshan-Madushanka/secure-bird" target="_blank">
 <img src="https://github.com/Lakshan-Madushanka/secure-bird/blob/main/public/images/favicon.svg" width="300" alt="Secure Bird Logo">
 </a>
