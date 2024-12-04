@@ -28,10 +28,10 @@ Secure Bird is a secure data-sharing system that enables you to share sensitive 
 - [Mail Driver (when reference email field is provided)](https://laravel.com/docs/11.x/mail)
 
 ## Installation
-1). Clone the repository.
-2). Run ```composer install``` command
-3). Create .env file and copy contents of .env.example to it.
-4). Setup required [drivers](#requirements).
-5). Finally, run ```php artisan key:generate``` command.
-6). Build assets `npm run build` or `npm run dev`
+1. Clone the repository.
+2. Run ```composer install``` command
+3. Create .env file and copy contents of .env.example to it.
+4. Run ```php artisan key:generate``` command to generate application key.
+5. Setup required [drivers](#requirements).
+6. Build assets `npm run build` or `npm run dev`
 
