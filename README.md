@@ -15,6 +15,10 @@
 ## Overview
 Secure Bird is a secure data-sharing system that enables you to share sensitive information instantly.
 
+<a href="https://www.youtube.com/embed/254ZJYzKInQ" target="_blank" title="Secure Bird Demo">
+<img src="https://github.com/user-attachments/assets/5c3a51c2-7db7-433b-86b7-57b1f033fdc0" width="853">    
+</a>
+
 ## Features
 - 🔓 No Login Required
 - 🗃️ Supports Media (images, videos, etc.)
