@@ -30,8 +30,12 @@
             </div>
             <div class="flex flex-1 items-center justify-end sm:items-stretch sm:justify-start">
                 <div class="flex flex-shrink-0 items-center">
-                    <img class="block h-8 w-auto lg:hidden" src="{{asset('images/favicon.svg')}}" alt="Main logo">
-                    <img class="hidden h-8 w-auto lg:block" src="{{asset('images/favicon.svg')}}" alt="Main logo">
+                    <a href="{{route('home')}}">
+                        <img class="block h-8 w-auto lg:hidden" src="{{asset('images/favicon.svg')}}" alt="Main logo">
+                    </a>
+                    <a href="{{route('home')}}">
+                        <img class="hidden h-8 w-auto lg:block" src="{{asset('images/favicon.svg')}}" alt="Main logo">
+                    </a>
                 </div>
                 <div class="hidden sm:ml-6 sm:block">
                     <div class="flex space-x-4">
@@ -44,7 +48,7 @@
                             ])
                             aria-current="{{request()->routeIs('home') ?'page' : ''}}"
                         >
-                            Get link
+                            Get Link
                         </a>
                         <a
                             href="#"
@@ -53,29 +57,29 @@
                             ])
                             onclick="Livewire.emit('openModal', 'show-message-form')"
                         >
-                            Show messages
+                            Show Messages
                         </a>
                     </div>
                 </div>
             </div>
-            <div class="hidden sm:block absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 space-x-2">
+            <div class="hidden sm:flex absolute inset-y-0 right-0 items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0 space-x-2">
                 <a
-                    href="#"
+                    href="{{route('howItWorks')}}"
                     @class([
                     'text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium',
-                    'active' => request()->routeIs('home')
+                    'active' => request()->routeIs('howItWorks')
                     ])
-                    aria-current="{{request()->routeIs('home') ?'page' : ''}}"
+                    aria-current="{{request()->routeIs('howItWorks') ? 'how it works' : ''}}"
                 >
-                    How it works
+                    How It Works
                 </a>
                 <a
-                    href="#"
+                    href="{{route('about')}}"
                     @class([
                     'text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium',
-                    'active' => request()->routeIs('home')
+                    'active' => request()->routeIs('about')
                     ])
-                    aria-current="{{request()->routeIs('home') ?'page' : ''}}"
+                    aria-current="{{request()->routeIs('about') ? 'about' : ''}}"
                 >
                     About
                 </a>
@@ -94,7 +98,7 @@
                 ])
                 aria-current="{{request()->routeIs('home') ?'page' : ''}}"
             >
-                Get link
+                Get Link
             </a>
             <a
                 href="#"
@@ -104,7 +108,7 @@
                 ])
                 aria-current="{{request()->routeIs('home') ?'page' : ''}}"
             >
-                Show messages
+                Show Messages
             </a>
             <a
                 href="#"
@@ -114,7 +118,7 @@
                 ])
                 aria-current="{{request()->routeIs('home') ?'page' : ''}}"
             >
-                How it works
+                How It Works
             </a>
             <a
                 href="#"
