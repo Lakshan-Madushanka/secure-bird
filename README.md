@@ -1,12 +1,12 @@
 <div align="center">
 
-# Secure Bird
+# SECURE BIRD
 
 <a href="https://github.com/Lakshan-Madushanka/secure-bird" target="_blank">
 <img src="https://github.com/Lakshan-Madushanka/secure-bird/blob/main/public/images/favicon.svg" width="300" alt="Secure Bird Logo">
 </a>
 
-## Share your confidential information securely.
+ **Share your confidential information securely.**
 </div>
 
 ## Overview
